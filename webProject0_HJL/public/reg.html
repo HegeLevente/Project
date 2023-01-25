@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/stylesheets/form.css">
+  <title>Regisztáció</title>
+</head>
+
+<body>
+  <h1>Regisztációs lap</h1>
+  <form action="/user/regisztracio" enctype="multipart/form-data" method="post">
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="Bejelentkezési név" name="username">
+      <input type="password" class="form-control" placeholder="Jelszó" name="password">
+      <input type="password" class="form-control" placeholder="Jelszó megerősítése" name="password2">
+
+      <input type="text" class="form-control" placeholder="Név" name="name">
+      <input type="text" class="form-control" placeholder="Email" name="email">
+
+      <input type="file" class="form-control-file" name="uploaded_file">
+
+      <input type="submit" value="Regisztráció" class="btn btn-default">
+    </div>
+  </form>
+
+</body>
+
+</html>

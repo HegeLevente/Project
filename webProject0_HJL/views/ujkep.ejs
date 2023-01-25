@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/stylesheets/form.css">
+  <title>Új kép feltöltése</title>
+</head>
+
+<body>
+  <h1>Új kép feltöltése</h1>
+  <form action="/kep_upload" enctype="multipart/form-data" method="post">
+    <div class="form-group">
+      <input type="file" class="form-control-file" name="uploaded_file"><br />
+      <input type="text" class="form-control" placeholder="A kép neve" name="megnev"><br />
+
+      <select name="kateg">
+        <% kateg.forEach(function(item) { %>
+          <option value=<%=item.id%> > <%=item.nev%> </option>
+        <% }); %>
+      </select>
+
+      <input type="submit" value="Feltöltés" class="btn btn-default">
+    </div>
+  </form>
+
+</body>
+
+</html>

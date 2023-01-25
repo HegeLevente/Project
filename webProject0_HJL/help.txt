@@ -1,0 +1,33 @@
+REST (Representational State Transfer) API backend készítése
+------------------------------------------------------------
+
+npx express-generator
+
+CREATE TABLE feladatok (
+  id INT NOT NULL AUTO_INCREMENT,
+  nev VARCHAR(255) NOT NULL,
+  kezdo_datum DATE DEFAULT NULL,
+  allapot TINYINT(1) NOT NULL,
+  fontossag TINYINT NOT NULL,
+  leiras TEXT DEFAULT NULL,
+  created_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (id)
+)
+ENGINE = INNODB,
+AUTO_INCREMENT = 2,
+CHARACTER SET utf8,
+COLLATE utf8_hungarian_ci;
+
+
+Methods	Urls	            Actions
+GET	    api/feladat	      visszaadja az összes feladatot
+GET	    api/feladat/:id	  visszaadja a megadott azonosítójú feladatot
+POST	  api/feladat	      új feladatot visz fel 
+PUT	    api/feladat/:id	  módosítja a megadott azonosítójú feladatot
+DELETE	api/feladat/:id	  törli a a megadott azonosítójú feladatot
+DELETE	api/feladat     	törli az összes feladatot
+GET	    api/feladat/fontos  	visszaadja az összes "fontos" feladatot
+GET	    api/feladat?nev=[xyz]	visszaadja a keresett feladatot, aminek neve tartalmazza 'xyz'
+
+
+https://www.bezkoder.com/node-js-rest-api-express-mysql/#Create_MySQL_table
