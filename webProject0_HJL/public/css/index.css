@@ -1,5 +1,6 @@
 body{
   background-color: rgb(201, 228, 235);
+  
 }
 header {
   position: fixed;
@@ -15,7 +16,7 @@ header {
   position: absolute;
     left: 0px;
   margin: 10px;
-  height: 10px;
+  height: 130px;
 }
 nav {
   display: flex;
@@ -129,9 +130,10 @@ nav .nav-dropbtn:hover + .nav-dropdown-content {
   display: block;
 }
 .card {
-    width: 600px ;
-    height: 500px ;
-    margin: 5px ;
+    width: 60% ;
+    height: 80% ;
+    margin: auto ;
+    margin-bottom: 20px;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25); 
     border-radius: 10px; 
     transition: transform 0.5s ease;
@@ -143,7 +145,7 @@ nav .nav-dropbtn:hover + .nav-dropdown-content {
 }
 .card-img-top {
     width: 100%; /* set the width of the image */
-    height: 300px; /* set the height of the image */
+    height: 400px; /* set the height of the image */
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
 }
@@ -188,26 +190,32 @@ nav .nav-dropbtn:hover + .nav-dropdown-content {
 /* Display 4 cards in a row on screens larger than 1200px */
 @media (min-width: 1200px) {
     .card {
-        width: calc(100% / 4 - 20px); /* adjust the width of the cards */
+        width: calc(100% / 5 - 10px); /* adjust the width of the cards */
     }
 }
 
 /* Display 3 cards in a row on screens between 992px and 1199px */
 @media (min-width: 992px) and (max-width: 1199px) {
     .card {
-        width: calc(100% / 3 - 20px); /* adjust the width of the cards */
+        width: calc(100% / 4 - 10px); /* adjust the width of the cards */
     }
 }
 
 /* Display 2 cards in a row on screens between 768px and 991px */
 @media (min-width: 768px) and (max-width: 991px) {
     .card {
-        width: calc(100% / 2 - 20px); /* adjust the width of the cards */
+        width: calc(100% / 3 - 10px); /* adjust the width of the cards */
     }
+}
+/* Display 2 cards in a row on screens between 768px and 991px */
+@media (min-width: 421px) and (max-width: 767px) {
+  .card {
+      width: calc(100% / 2 - 10px); /* adjust the width of the cards */
+  }
 }
 
 /* Display 1 card in a row on screens smaller than 768px */
-@media (max-width: 767px) {
+@media (max-width: 420px) {
     .card {
         width: 100%; /* adjust the width of the cards */
     }
