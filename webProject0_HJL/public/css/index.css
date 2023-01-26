@@ -1,57 +1,141 @@
-.navbar {
-	background-color: #3498db;
-  }
-  
-  .navbar-brand {
-	color: #fff;
-	font-weight: bold;
-	text-transform: uppercase;
-  }
-  
-  .navbar-nav .nav-link {
-	color: #fff;
-	text-transform: uppercase;
-	margin-right: 20px;
-  }
-  
-  .navbar-nav .nav-link:hover {
-	background-color: #2980b9;
-	border-radius: 25px;
-  }
-  
-  .form-control {
-	border-radius: 25px;
-	background-color: #fff;
-	border: none;
-  }
-  
-  .form-control:focus {
-	box-shadow: none;
-  }
-  
-  .btn-outline-success {
-	background-color: #fff;
-	color: #3498db;
-	border-radius: 25px;
-	border: 2px solid #3498db;
-	margin-left: 10px;
-  }
-  
-  .btn-outline-success:hover {
-	background-color: #2980b9;
-	color: #fff;
-  }
+body{
+  background-color: rgb(201, 228, 235);
+}
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height:70px;
+  z-index: 1;
+  background-color: #6a1b9a;
+  border-radius: 5px;
+}
 
+.logo {
+  position: absolute;
+    left: 0px;
+  margin: 10px;
+  height: 10px;
+}
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 0px;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+li {
+  margin: 0 10px;
+}
+nav .nav-right {
+  display: flex;
+  margin: auto;
+}
+
+nav .nav-right ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+nav .nav-right li {
+  margin: 0 10px;
+}
+
+nav .nav-right a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.2em;
+  font-weight: bold;
+  padding: 10px 15px;
+  background-color: #9c27b0;
+  border-radius: 5px;
+}
+
+nav .nav-right a:hover {
+  background-color: #7b1fa2;
+}
+
+/* CSS for the dropdown button and content */
+nav .nav-dropdown {
+  display: none; /* this will hide the dropdown by default */
+}
+
+nav .nav-dropbtn {
+  background-color: #6a1b9a;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+}
+
+nav .nav-dropdown-content {
+  display: none; /* this will hide the dropdown content by default */
+  position: absolute;
+  background-color: #6a1b9a;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.2em;
+  font-weight: bold;
+  padding: 10px 15px; /* this will add some padding to the links */
+  background-color: #9c27b0; /* this will give the links a button look */
+  border-radius: 5px; /* this will add rounded corners to the links */
+}
+
+a:hover {
+  background-color: #7b1fa2; /* this will change the background color of the links when hovered over */
+}
+
+nav .nav-dropdown-content a {
+  color: #fff;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+nav .nav-dropdown-content a:hover {
+  background-color: #7b1fa2;
+}
+nav .nav-dropdown:hover .nav-dropdown-content {
+  display: block; /* show the dropdown menu */
+}
+/* CSS for showing the dropdown on small screens */
+@media screen and (max-width: 800px) {
+  nav .nav-right {
+    display: none; /* hide the default navigation links */
+  }
+  nav .nav-dropdown {
+    display: block; /* show the dropdown button */
+  }
+}
+
+/* CSS for showing the dropdown content when the button is clicked */
+nav .nav-dropbtn:hover + .nav-dropdown-content {
+  display: block;
+}
 .card {
-    width: 600px; /* set the width of the card */
-    height: 500px; /* set the height of the card */
-    margin: 10px; /* Add margin of 10px between each card */
-    /* Add a subtle box shadow for depth */
+    width: 600px ;
+    height: 500px ;
+    margin: 5px ;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25); 
-
     border-radius: 10px; 
-
     transition: transform 0.5s ease;
+    background-color: #7b1fa2; 
 }
 
 .card:hover {
@@ -63,25 +147,18 @@
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
 }
-
-/* Add a fixed width and height for the card body */
 .card-body {
-    width: 100%;
+    width: 80%;
     height: 150px;
-    /* Add a transparent white background for the text */
-    background-color: rgba(255, 255, 255, 0.8); 
-    /* Add some padding for better spacing */
     padding: 1rem; 
-    /* Add rounded corners to the bottom left of the card */
     border-bottom-left-radius: 10px;
-    /* Add rounded corners to the bottom right of the card */
     border-bottom-right-radius: 10px;
 }
 
 .card-title {
     font-size: 1.2em; /* Increase the font size for better visibility */
-    color: #333; /* Dark gray */
-    text-shadow: 2px 2px #fff; /* Add a text shadow for a bolder look */
+    color: #fff; /* Dark gray */
+    text-shadow: 2px 2px #9c27b0; /* Add a text shadow for a bolder look */
     margin-bottom: 0.5rem; /* Add some margin for better spacing */
 }
 
@@ -100,10 +177,12 @@
     display: flex;
     flex-wrap: wrap; /* add this to make the cards wrap properly */
     justify-content: space-between;
+    padding-top: 50px;
   }
   .container {
     max-width: 1200px; /* set the maximum width of the container */
-    margin: 0 auto; /* center the container horizontally */
+    margin: 20px auto;
+ /* center the container horizontally */
 }
 
 /* Display 4 cards in a row on screens larger than 1200px */

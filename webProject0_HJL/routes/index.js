@@ -12,7 +12,7 @@ router.get('/varosok/:page', async (req, res, next) => {
     if(pageNo<1 || isNaN(pageNo)){ pageNo=0}
     const resultElements = await Db.SelectFilm(pageNo);
     //res.json(resultElements);
-    res.render('kereses.ejs',{list:resultElements})
+    res.render('page.ejs',{list:resultElements})
   } catch (e) {
     console.log(e); // console.log - Hiba esetén.
     res.sendStatus(500);
@@ -25,7 +25,7 @@ router.get('/kereses/:page', async (req, res, next) => {
     if(pageNo<1 || isNaN(pageNo)){ pageNo=0}
     const resultElements = await Db.SelectFilmek(pageNo);
     //res.json(resultElements);
-    res.render('kereses.ejs',{list:resultElements})
+    res.render('page.ejs',{list:resultElements})
   } catch (e) {
     console.log(e); // console.log - Hiba esetén.
     res.sendStatus(500);

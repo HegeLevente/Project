@@ -2,7 +2,6 @@ currentPage=1;
 
 const handleInfiniteScroll = () => {
     const endOfPage =
-     // window.innerHeight + window.pageYOffset >= document.body.offsetHeight;
      window.innerHeight + window.scrollY >= document.body.offsetHeight;
 
     if (endOfPage) {
@@ -24,11 +23,8 @@ function appendContent(page){
   const divShowData = document.getElementById("hely");
   myData = getData("/kereses/"+page);
   myData.then(result => {
-    tbl = tableFromJson(result);
-    divShowData.appendChild(tbl);
-    addOrderToTable();
     nextPage=page+1;
-    divShowData.innerHTML+="<a href='javascript:appendContent("+nextPage+")'>További tartalom</a>";
+    divShowData.innerHTML+=result;
   })
 }
 
@@ -49,7 +45,7 @@ async function getData(url){
         method: 'GET'
     }
     )
-   return res.json();
+   return res.text();
 }
 
 let tableFromJson = (jsonData) => {
