@@ -4,6 +4,7 @@ var router = express.Router();
 var multer = require('multer');  // file feltöltéshez
 var path = require('path');      // útvonalhoz
 
+var verify= require('../middleware/verfyModule')
 var Db = require('../db/dboperation');
 
 /* GET users listing. */
@@ -48,8 +49,8 @@ router.post('/regisztracio',profil.single('uploaded_file'), async function (req,
 );
 
 router.post('/login', async function(req, res, next) {
-  let username = req.body.username;
-  let password = req.body.password;
+  let username = req.body.Username;
+  let password = req.body.Password;
   
   const resultElements = await Db.VerifyUser(username,password);
 
@@ -58,9 +59,8 @@ router.post('/login', async function(req, res, next) {
   else 
    {
     req.session.user_id    = resultElements[0].id;
-    req.session.name      = resultElements[0].name;
-    req.session.profilkep = resultElements[0].profilkep;
-    res.redirect('/kepek');
+    req.session.name      = resultElements[0].Username;
+    res.redirect('/Kereses.html');
 }
 
 });

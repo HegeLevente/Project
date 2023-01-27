@@ -4,7 +4,7 @@ var multer = require('multer');  // file feltöltéshez
 var path = require('path');      // útvonalhoz
 
 var Db = require('../db/dboperation');
-
+var verify= require('../middleware/verfyModule')
 
 router.get('/varosok/:page', async (req, res, next) => {
   try {

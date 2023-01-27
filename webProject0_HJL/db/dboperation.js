@@ -90,7 +90,7 @@ async function InsertUser(username,password,name,email,kepnev) {
 
 async function VerifyUser(username,password) {
     return new Promise((resolve, reject) => {
-        pool.query('SELECT * FROM users where username=? and password=titkosit(?)',
+        pool.query('SELECT * FROM filmek.user where Username=? and Password=titkosit(?)',
         [username,password], (error, elements) => {
             if (error) {
                 return reject(error);

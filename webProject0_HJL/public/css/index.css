@@ -87,6 +87,16 @@ nav .nav-dropdown-content {
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
 }
+nav .nav-link{
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.2em;
+  font-weight: bold;
+  padding: 10px 15px; /* this will add some padding to the links */
+  background-color: #9c27b0; /* this will give the links a button look */
+  border-radius: 5px; /* this will add rounded corners to the links */
+
+}
 
 a {
   color: #fff;
