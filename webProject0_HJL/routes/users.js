@@ -31,12 +31,9 @@ router.post('/regisztracio', async function (req, res, next) {
       let password = req.body.password;
       let name = req.body.fullname;
       let email = req.body.email;
-    
       const resultElements = await Db.InsertUser(username,password,name,email);
-      const resultElement3 = await Db.SelectFilmek(1);
-      res.render('page', { kateg: resultElements3 }); // template
       //req.session.user_id = resultElements.insertId;   // Login OK   
-      res.redirect('/Kereses.html');
+      res.redirect('/kereses.html');
 
     } catch (e) {
       console.log(e); // console.log - Hiba esetén.
