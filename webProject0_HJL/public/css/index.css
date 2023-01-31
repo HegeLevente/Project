@@ -139,13 +139,9 @@ nav .nav-dropdown:hover .nav-dropdown-content {
 }
 #profil{
   display: block;
-  color: #fff;
-  text-decoration: none;
-  font-size: 1.2em;
-  font-weight: bold;
-  padding: 10px 15px; /* this will add some padding to the links */
-  background-color: #9c27b0; /* this will give the links a button look */
-  border-radius: 5px;
+  z-index: 1;
+  height: 30px;
+  border-color: #9c27b0;
 }
 /* CSS for showing the dropdown content when the button is clicked */
 nav .nav-dropbtn:hover + .nav-dropdown-content {
@@ -241,7 +237,4 @@ nav .nav-dropbtn:hover + .nav-dropdown-content {
     .card {
         width: 100%; /* adjust the width of the cards */
     }
-}
-#profil{
-
 }
