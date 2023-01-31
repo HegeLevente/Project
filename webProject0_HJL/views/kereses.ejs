@@ -1,20 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link 
+    <title>Retro Film Kincsek</title>
 </head>
 <body>
-    <div class="container">
-        <div class="card-deck">
-            <% list.forEach(function(item,index) { %>
-                <div class="card">
-                    <img class="card-img-top" src="/Filmek/<%=item.EredetiCim%>/Image_1.jpg" alt="Movie poster">
-                    <div class="card-body">
-                        <h4 class="card-title"><%= item.MagyarCim %></h4>
-                        <a href="#" class="btn btn-primary">View Details</a>
-                    </div>
-                </div>
-            <% }); %>
-        </div>
+    <%- include('navbar.ejs') %>
+      
+    <script type="text/javascript" src="./js/Scroll.js"></script>
+    <h1></h1>
+    <div class="card-deck" id="hely">
+        <script>
+            appendContent(currentPage)
+        </script>
     </div>
-  </body>
+</body>
 </html>
