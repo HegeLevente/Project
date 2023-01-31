@@ -75,10 +75,10 @@ async function SelectKategoria() {
     });
 };
 
-async function InsertUser(username,password,name,email,kepnev) {
+async function InsertUser(username,password,name,email) {
     return new Promise((resolve, reject) => {
-        pool.query('INSERT INTO users (username,password,name,email,profilkep) VALUES (?,titkosit(?),?,?,?)',
-        [username,password,name,email,kepnev], (error, elements) => {
+        pool.query('INSERT INTO user (Username,Password,Neve,Email) VALUES (?,titkosit(?),?,?)',
+        [username,password,name,email], (error, elements) => {
             if (error) {
                 return reject(error);
             }

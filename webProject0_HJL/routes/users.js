@@ -25,21 +25,18 @@ var storage = multer.diskStorage({
 var profil = multer({ storage: storage })
 
 /* Új felhasználó. */
-router.post('/regisztracio',profil.single('uploaded_file'), async function (req, res, next) {
+router.post('/regisztracio', async function (req, res, next) {
     try {
-      let kepnev = req.file.filename;
       let username = req.body.username;
       let password = req.body.password;
-      let name = req.body.name;
+      let name = req.body.fullname;
       let email = req.body.email;
     
-      const resultElements = await Db.InsertUser(username,password,name,email,kepnev);
-      res.render('ujkep', { kateg: resultElements }); // template
+      const resultElements = await Db.InsertUser(username,password,name,email);
+      const resultElement3 = await Db.SelectFilmek(1);
+      res.render('page', { kateg: resultElements3 }); // template
       //req.session.user_id = resultElements.insertId;   // Login OK   
-
-      const resultElements2 = await Db.VerifyUser(username,password);
-      req.session.name    = resultElements2[0].name;
-      res.redirect('/kepek');
+      res.redirect('/Kereses.html');
 
     } catch (e) {
       console.log(e); // console.log - Hiba esetén.

@@ -72,11 +72,13 @@ nav .nav-dropdown {
 }
 
 nav .nav-dropbtn {
-  background-color: #6a1b9a;
   color: #fff;
-  padding: 10px 15px;
-  border: none;
-  cursor: pointer;
+  text-decoration: none;
+  font-size: 1.2em;
+  font-weight: bold;
+  padding: 10px 15px; /* this will add some padding to the links */
+  background-color: #9c27b0; /* this will give the links a button look */
+  border-radius: 5px;
 }
 
 nav .nav-dropdown-content {
@@ -130,11 +132,21 @@ nav .nav-dropdown:hover .nav-dropdown-content {
   nav .nav-right {
     display: none; /* hide the default navigation links */
   }
+  
   nav .nav-dropdown {
     display: block; /* show the dropdown button */
   }
 }
-
+#profil{
+  display: block;
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.2em;
+  font-weight: bold;
+  padding: 10px 15px; /* this will add some padding to the links */
+  background-color: #9c27b0; /* this will give the links a button look */
+  border-radius: 5px;
+}
 /* CSS for showing the dropdown content when the button is clicked */
 nav .nav-dropbtn:hover + .nav-dropdown-content {
   display: block;
@@ -229,4 +241,7 @@ nav .nav-dropbtn:hover + .nav-dropdown-content {
     .card {
         width: 100%; /* adjust the width of the cards */
     }
+}
+#profil{
+
 }
