@@ -8,15 +8,16 @@ header {
     width: 100%;
     height: 20%;
     z-index: 1;
-    background-color: #6a1b9a;
-    border-radius: 5px;
+
   }
-  .logo {
+.logo {
     position: absolute;
       left: 0px;
     margin: 10px;
     height: 130px;
   }
-  .navbar-expand-lg{
-    background-color: #6a1b9a;
-  }
+.navbar{
+    background-color: #3c3f42;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
