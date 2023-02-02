@@ -19,7 +19,7 @@ async function SelectFilm(pageNo) {
 async function SelectFilmek(pageNo) {
     return new Promise((resolve, reject) => {
         pool.query('SELECT filmek.*,kategoria.kategoria FROM filmek '+
-        'INNER JOIN kategoria ON filmek.KategoriaID = kategoria.kategoriaid LIMIT 20 offset ?',pageNo*20 , (error, elements) => {
+        'INNER JOIN kategoria ON filmek.KategoriaID = kategoria.kategoriaid LIMIT 18 offset ?',pageNo*18 , (error, elements) => {
             if (error) {
                 return reject(error);
             }
