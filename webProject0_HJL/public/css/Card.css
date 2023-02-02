@@ -75,6 +75,26 @@ transition: opacity .5s;
   .card__title a {
     color: var(--complementer);
   }
+  .card__title a:hover {
+    color: var(--main);
+  }
+  .card__title a {
+    color: var(--complementer);
+  }
+  a:hover, a:active, a:focus {
+    outline: none;
+    text-decoration: none;
+  }
+  .card__title a:hover {
+    color: #f9ab00;
+  }
+  .card__title a {
+    color: var(--complementer);
+  }
+  a:hover, a:active, a:focus {
+    outline: none;
+    text-decoration: none;
+  }
   a {
     transition: .4s;
       transition-property: all;
