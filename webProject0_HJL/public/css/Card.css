@@ -75,6 +75,10 @@ transition: opacity .5s;
   .card__title a {
     color: var(--complementer);
   }
+  .card__title a:hover {
+    color: #f9ab00;
+    text-decoration: none;
+  }
   a {
     transition: .4s;
       transition-property: all;
