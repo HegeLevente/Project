@@ -2,7 +2,7 @@ currentPage=1;
 
 const handleInfiniteScroll = () => {
     const endOfPage =
-     window.innerHeight + window.scrollY >= document.body.offsetHeight;
+     window.innerHeight + window.scrollY >= document.body.offsetHeight-10;
 
     if (endOfPage) {
       appendContent(++currentPage)
