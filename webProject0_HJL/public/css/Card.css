@@ -52,7 +52,7 @@
 
 .card__cover img{
     width: 100%;
-transition: opacity .5s;
+transition: .5s;
 }
 .card__content {
     position: relative;
@@ -64,16 +64,12 @@ transition: opacity .5s;
     font-size: 18px;
     line-height: 30px;
     font-weight: 400;
-    color: var(--complementer);
     margin: 0;
     overflow: hidden;
     white-space: nowrap;
     -o-text-overflow: ellipsis;
     text-overflow: ellipsis;
     word-wrap: break-word;
-  }
-  .card__title a {
-    color: var(--complementer);
   }
   .card__title a:hover {
     color: #f9ab00;
@@ -82,5 +78,5 @@ transition: opacity .5s;
   a {
     transition: .4s;
       transition-property: all;
-    transition-property: color,background-color,border-color,opacity;
+    transition-property: color;
   }
