@@ -2,21 +2,18 @@
 <html>
   <head>
     <title>Registration Form</title>
+    <link rel="stylesheet" href="/css/reg.css">
   </head>
   <body>
-    <h2>Registration Form</h2>
-    <form action="/user/regisztracio" method="post">
-      <label for="username">Felhasználó név:</label>
-      <input type="text" id="username" name="username"><br><br>
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email"><br><br>
-      <label for="password">Jelszó:</label>
-      <input type="password" id="password" name="password"><br><br>
-      <label for="password">Jelszó ismétlése:</label>
-      <input type="password" id="passwordagain" name="passwordagain"><br><br>
-      <label for="fullname">Teljes név:</label>
-      <input type="text" id="fullname" name="fullname"><br><br>
-      <input type="submit" value="Submit">
-    </form> 
-  </body>
+    <div class="registration-container">
+      <h1>Registration</h1>
+      <form action="/register" method="post">
+        <input type="text" placeholder="Full Name" name="fullname">
+        <input type="text" placeholder="Username" name="username">
+        <input type="email" placeholder="Email" name="email">
+        <input type="password" placeholder="Password" name="password">
+        <input type="password" placeholder="Confirm Password" name="passwordConfirm">
+        <input type="submit" value="Submit">
+      </form>
+    </div>
 </html>

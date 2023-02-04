@@ -1,3 +1,5 @@
+/*forrás: AnimeDrive.hu*/
+
 @media (min-width: 1440px){
 .container {
   max-width: 1310px;
@@ -100,3 +102,4 @@ transition: .5s;
       transition-property: all;
     transition-property: color;
   }
+  /*-------------

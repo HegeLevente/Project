@@ -1,100 +1,43 @@
-@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300);
-
-
-*{
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
-	
-	font-weight: 300;
-}
-
-body{
-	font-family: 'Source Sans Pro', sans-serif;
-	color: white;
-	font-weight: 300;
-}
-
-.wrapper{
-	background: #50a3a2;
-background: -webkit-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
-background: -moz-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
-background: -o-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
-background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 100%);
-	
-	position: absolute;
-	top: 50%;
-	left: 0;
-	width: 100%;
-	height: 400px;
-	margin-top: -200px;
-	overflow: hidden;
-}
-
-.container{
-	max-width: 600px;
-	margin: 0 auto;
-	padding: 80px 0;
-	height: 400px;
+.login-container {
+	width: 35%;
+	height: 50%;
+	background-color: #f2f2f2;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	box-shadow: 2px 2px 5px #888888;
+	margin: 5% auto;
 	text-align: center;
-}
-container h1{
-		font-size: 40px;
-		transition-duration: 1s;
-		transition-timing-function: ease-in-put;
-		font-weight: 200;
-	}
-
-
-form{
-	padding: 20px 0;
-	position: relative;
-	z-index: 2;
-}
-	input{
-		display: block;
-		appearance: none;
-		outline: 0;
-		border: 1px solid fade(white, 40%);
-		background-color: fade(white, 20%);
-		width: 250px;
-		
-		border-radius: 3px;
-		padding: 10px 15px;
-		margin: 0 auto 10px auto;
-		display: block;
-		text-align: center;
-		font-size: 18px;
-		
-		color: white;
-		
-		transition-duration: 0.25s;
-		font-weight: 300;
-    }
-		input :hover{
-			background-color: fade(white, 40%);
-		}
-		
-		input :focus{
-			background-color: white;
-			width: 300px;
-		}
-	
-	
-	button{
-		appearance: none;
-		outline: 0;
-		background-color: white;
-		border: 0;
-		padding: 10px 15px;
-		border-radius: 3px;
-		width: 250px;
-		cursor: pointer;
-		font-size: 18px;
-		transition-duration: 0.25s;
-    }
-		button :hover{
-			background-color: rgb(245, 247, 249);
-		}
-	
-
+	padding: 40px;
+  }
+  
+  .login-container h1 {
+	font-size: 36px;
+	font-weight: bold;
+	margin-bottom: 20px;
+  }
+  
+  .login-container input[type="text"],
+  .login-container input[type="password"] {
+	width: 80%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	box-sizing: border-box;
+	border: 2px solid #ccc;
+	border-radius: 4px;
+  }
+  
+  .login-container input[type="submit"] {
+	width: 80%;
+	background-color: #4CAF50;
+	color: white;
+	padding: 14px 20px;
+	margin: 8px 0;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	font-weight: bold;
+  }
+  
+  .login-container input[type="submit"]:hover {
+	background-color: #3e8e41;
+  }
