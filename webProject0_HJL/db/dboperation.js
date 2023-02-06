@@ -86,7 +86,28 @@ async function InsertUser(username,password,name,email) {
         });
     });
 };
-
+async function InsertFavorite(username,flimid){
+    return new Promise((resolve,reject)=>{
+        pool.query("INSERT INTO kedvenckapcsolas (userID, FilmID) VALUE (?,?)",
+        [username,filmid],(error,elements)=>{
+            if (error){
+                return reject (error);
+            }
+            return resolve(elements);
+        });
+    });
+};
+async function DeleteFavorite(username,flimid){
+    return new Promise((resolve,reject)=>{
+        pool.query("Delete kedvenckapcsolas from kedvenckapcsolas where FilmID=? and userID=?;",
+        [user_id,filmid],(error,elements)=>{
+            if (error){
+                return reject (error);
+            }
+            return resolve(elements);
+        });
+    });
+};
 
 async function VerifyUser(username,password) {
     return new Promise((resolve, reject) => {
@@ -106,6 +127,8 @@ module.exports = {
   SelectFilm :SelectFilm,
   SelectKepek : SelectKepek,
   InsertKep : InsertKep,
+  DeleteFavorite : DeleteFavorite,
+  InsertFavorite : InsertFavorite,
   SelectKategoria : SelectKategoria,
   SelectKepekFiltered : SelectKepekFiltered,
   InsertUser: InsertUser,

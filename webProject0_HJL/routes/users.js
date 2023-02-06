@@ -47,6 +47,22 @@ router.post('/login', async function(req, res, next) {
     res.redirect('/kereses');
 }
 });
+router.post('/reg', async function(req, res, next) {
+  let username = req.body.username;
+  let password = req.body.password;
+  let email = req.body.email;
+  let neve = req.body.fullname;
+  const resultElements = await Db.InsertUser(username,password,neve,email);
+
+  if(resultElements.length == 0)
+      res.redirect('/reg')
+  else 
+   {
+    req.session.user_id    = resultElements.insertId;
+    req.session.name      = username;
+    res.redirect('/kereses');
+}
+});
 router.get('/logout', function(req, res, next) {
   req.session.destroy();
   res.send('Logout OK');
