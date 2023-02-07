@@ -3,5 +3,6 @@ body{
   background-image: url(/images/background.jpg);
   background-color: rgb(119, 106, 106);
   background-repeat: repeat-y;
+  background-blend-mode: luminosity;
 }
 

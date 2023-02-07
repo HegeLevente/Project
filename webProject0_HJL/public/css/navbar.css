@@ -1,62 +1,69 @@
 .navbar {
-  background-color: #ddd;
-  padding: 14px 16px;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
+  background-color: #333;
   box-shadow: 0px 0px 10px #bbb;
+  padding: 0;
 }
 
 .navbar-brand {
   font-size: 22px;
   font-weight: bold;
   color: #333;
+  height: max-content;
+  margin: 0;
 }
-
+.navbar-nav .nav-link{
+  border-radius: 10px;
+  margin: 5px;  
+}
 .navbar-brand img {
-  height: 40px;
+  height: 100px;
 }
 
 .nav-item a {
+  background-color: #6c757d;
   font-size: 18px;
-  color: #333;
+  color: #fff;
 }
 
 .nav-item a:hover {
-  background-color: #ccc;
-  color: #000;
+  background-color: #5a6268;
+  color: #fff;
 }
 
 .form-control {
   border-radius: 25px;
   background-color: #fff;
   border: none;
-  box-shadow: 0px 0px 10px #bbb;
+  box-shadow: 0px 0px 3px #bbb;
 }
 
 .btn-outline-success {
   border-radius: 25px;
-  border: 2px solid #4CAF50;
-  color: #4CAF50;
-  background-color: #fff;
-  box-shadow: 0px 0px 10px #bbb;
-  margin-left: 10px;
+  border: 2px solid #ccc;
+  color: #ccc;
+  background-color: #6c757d;
+  box-shadow: 0px 0px 3px #ccc;
+  margin-right: 10px;
 }
 
 .btn-outline-success:hover {
-  background-color: #4CAF50;
+  border-color: #ccc;
+  background-color: #5a6268;
   color: #fff;
 }
-
+.dropdown{
+  margin-right: 10px;
+}
 .dropdown-menu a {
   font-size: 18px;
-  color: #333;
+  color: #fff;
 }
 .dropdown-menu{
   border-radius: 20%;
 }
 .dropdown-menu a:hover {
-  background-color: #ccc;
-  color: #000;
+  background-color: #5a6268;
+  color:#fff;
 }
 .dropdown-menu {
   position: absolute;
@@ -68,10 +75,10 @@
   padding: 0.5rem 0;
   margin: 0.125rem 0 0;
   font-size: 1rem;
-  color: #212529;
+  color: #fff;
   text-align: left;
   list-style: none;
-  background-color: #fff;
+  background-color: #6c757d;
   background-clip: padding-box;
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 0.25rem;
