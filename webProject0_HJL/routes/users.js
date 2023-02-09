@@ -65,7 +65,7 @@ router.post('/reg', async function(req, res, next) {
 });
 router.get('/logout', function(req, res, next) {
   req.session.destroy();
-  res.send('Logout OK');
+  res.redirect('/kereses');
 });
 //CONCAT('*', UPPER(SHA1(UNHEX(SHA1('mypass')))))
 module.exports = router;

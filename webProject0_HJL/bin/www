@@ -3,25 +3,31 @@
 /**
  * Module dependencies.
  */
-
+const path = require("path") // path module 
+const fs = require("fs") //file system module
 var app = require('../app');
 var debug = require('debug')('filmek:server');
-var http = require('http');
+const https = require('https');
 
 
 /**
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '8080');
+var port = normalizePort(process.env.PORT || '443');
 app.set('port', port);
 
 /**
  * Create HTTP server.
  */
 
-var server = http.createServer(app);
+const options ={
+  key:fs.readFileSync(path.join(__dirname,'../cert/localhost/localhost.decrypted.key')),
+  cert:fs.readFileSync(path.join(__dirname,'../cert/localhost/localhost.crt')) 
+}
 
+//var server = http.createServer(app);
+const server =https.createServer(options,app)
 /**
  * Listen on provided port, on all network interfaces.
  */
@@ -88,5 +94,5 @@ function onListening() {
     ? 'pipe ' + addr
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
-  console.log('Listening on http://localhost:' + port);
+  console.log('Listening on https://localhost:' + port);
 }

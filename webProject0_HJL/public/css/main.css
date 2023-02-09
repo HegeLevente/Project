@@ -1,0 +1,7 @@
+body{
+  background-image: url(/images/background.png);
+  background-color: rgb(119, 106, 106);
+  background-repeat: repeat-y;
+  background-blend-mode: luminosity;
+}
+

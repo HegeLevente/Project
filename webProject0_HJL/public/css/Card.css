@@ -39,9 +39,8 @@
   width: 100%;
   position: relative;
   margin-bottom: 20px;
-  background-color: brown;
-  box-shadow: brown;
-  box-shadow: 0 0 10px brown;
+  background-color: rgb(131, 23, 131);
+  box-shadow: 0 0 10px rgb(131, 23, 131);
 }
 .card__cover {
     display: flex;
