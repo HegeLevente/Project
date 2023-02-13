@@ -1,0 +1,296 @@
+
+.section {
+    padding: 50px 0;
+    position: relative;
+  }
+  .row{
+    margin-top: 20px;
+    background-color: #333;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px #bbb;
+  }
+.details {
+    position: relative;
+    margin-top: 70px;
+  }
+  .details::before {
+    content: '';
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 400px;
+    z-index: 2;
+    background: linear-gradient(to bottom, rgba(43,43,49,0) 0%, #2b2b31 100%);
+  }
+
+  .details .container {
+    position: relative;
+    z-index: 3;
+  }
+  .details__title {
+    color: #fff;
+    font-size: 30px;
+    line-height: 42px;
+    margin-bottom: 5px;
+  }
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-top: 20px;
+    background:none;
+    border: none;
+  }
+  .card--details {
+    margin-bottom: 20px;
+  }
+  .card__cover {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    transition: 0.4s ease;
+    border-radius: 4px;
+    overflow: hidden;
+    
+  }
+  .card--details .card__cover {
+    max-width: 250px;
+  }
+  .card__cover img {
+    width: 100%;
+    position: relative;
+    z-index: 1;
+  }
+  .card__content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-top: 10px;
+    width: 100%;
+  }
+  .card--details .card__content {
+    margin-top: 20px;
+  }
+  .card--details .card__wrap {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .card__rate {
+    font-size: 16px;
+    font-weight: 500;
+    color: #fff;
+    position: relative;
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 5px;
+    padding-left: 20px;
+  }
+
+  .card__rate::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 16px;
+  }
+  .card--details .card__rate {
+    margin-top: 0;
+  }
+  ul {
+    margin: 0;
+      margin-left: 0px;
+    padding: 0;
+    list-style: none;
+  }
+  .card__list {
+    display: none;
+  }
+  .card--details .card__list {
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-left: 15px;
+  }
+.card--details .card__list li {
+    border: 1px solid rgba(255,255,255,0.16);
+    padding: 5px 5px 4px;
+    line-height: 100%;
+    border-radius: 4px;
+    margin-right: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.65);
+  }
+  .card__meta {
+    display: none;
+  }
+  .card--details .card__meta {
+    margin-top: 0px;
+    display: block;
+    font-size: 16px;
+    line-height: 26px;
+    color: rgba(255,255,255,0.7);
+  }
+  .card--details .card__meta li {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    width: 100%;
+    font-family: 'Open Sans', sans-serif;
+  }
+  .card--details .card__meta span {
+    color: rgba(255,255,255,0.7);
+    margin-right: 7px;
+  }
+  a {
+    transition: 0.4s ease;
+  }  
+  .card--details .card__meta a {
+    font-size: 16px;
+    position: relative;
+    color: rgb(255, 255, 0);;
+    margin-right: 7px;
+    opacity: 0.8;
+  }
+  .card--details .card__meta a :hover {
+    content: ',';
+    position: absolute;
+    display: block;
+    left: 100%;
+    top: 0;
+    color: rgb(131, 23, 131);
+  }
+  .card__description {
+    display: none;
+  }
+  .card--details .card__description {
+    display: block;
+    margin-top: 15px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    line-height: 26px;
+    color: rgba(255,255,255,0.7);
+  }
+  .b-description_readmore_button {
+    cursor: pointer;
+    display: block;
+    height: 24px;
+    width: 100%;
+    position: relative;
+  }
+  .card--details .card__wrap {
+  margin-top: 0;
+}
+
+
+
+
+
+  @media (min-width: 1200px) {
+    .details__title {
+      font-size: 36px;
+      line-height: 50px;
+    }
+    .card--series {
+      margin-bottom: 5px;
+    }
+    .card--details {
+      margin-bottom: 0;
+    }
+    .card--details .card__cover {
+      width: 210px;
+    }
+    .card--details .card__content {
+      width: calc(100% - 230px);
+    }
+    .card__description {
+      margin-top: 20px;
+    }
+  }
+  
+  
+  
+  @media (min-width: 768px) {
+      .details {
+          margin-top: 80px;
+        }
+    .details__title {
+      font-size: 32px;
+      line-height: 46px;
+    }
+    .card--details {
+      flex-direction: row;
+      margin-bottom: 30px;
+      margin-top: 25px;
+    }
+    .card {
+      margin-top: 30px;
+    }
+    .card--details .card__cover {
+      width: 210px;
+    }
+    .card--details .card__content {
+      width: calc(100% - 230px);
+      margin-top: 0;
+      margin-left: 20px;
+      height: 100%;
+      overflow: hidden;
+      position: relative;
+    }
+    .section {
+      padding: 70px 0;
+    }
+  }
+  
+  
+  
+  @media (min-width: 576px) {
+      .card__wrap {
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-start;
+          align-items: center;
+          margin-top: 10px;
+      }
+      .card--details .card__wrap {
+          margin-top: 0;
+        }
+        .card__list {
+          display: inline-flex;
+          flex-direction: row;
+          justify-content: flex-start;
+          align-items: center;
+          margin-left: 15px;
+        }
+        .card__list li {
+          border: 1px solid rgba(255,255,255,0.16);
+          padding: 5px 5px 4px;
+          line-height: 100%;
+          border-radius: 4px;
+          margin-right: 10px;
+          font-size: 12px;
+          font-weight: 700;
+          color: rgba(255,255,255,0.65);
+        }
+        .card__description {
+          display: block;
+          margin-top: 10px;
+        }
+  }
+  
+  
