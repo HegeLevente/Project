@@ -167,13 +167,9 @@
     margin-right: 7px;
     opacity: 0.8;
   }
-  .card--details .card__meta a :hover {
-    content: ',';
-    position: absolute;
-    display: block;
-    left: 100%;
-    top: 0;
-    color: rgb(131, 23, 131);
+  .card--details .card__meta a:hover {
+    color: rgb(185, 31, 185);
+    text-decoration: none;
   }
   .card__description {
     display: none;
