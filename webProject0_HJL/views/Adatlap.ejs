@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="/css/bootstrap-grid.min.css" />
+    <link rel="stylesheet" href="/css/bootstrap-reboot.min.css" />
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <script src="/js/bootstrap.bundle.min.js"></script>
+
+    
+    <link rel="stylesheet" href="/css/main.css"/>
+    <link rel="stylesheet" href="/css/navbar.css" />
+    <link rel="stylesheet" href="/css/Adatlap.css"/>
+
+    <title>Retro Film Kincstek</title>
+  </head>
+  <body>
+    <%- include('navbar.ejs') %>
+    <section class="section-details">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h1 class="details__title"><%=list[0].Cim%></h1>
+        </div>
+
+        <div class="col-12 col-xl-11">
+          <div class="card card--details card--series">
+            <div class="card__cover">
+              <img
+                src="/Filmek/<%=list[0].EredetiCim%>/Image_1.jpg"
+                alt=""
+              />
+            </div>
+
+            <div class="card__content">
+
+              <ul class="card__meta">
+                <li>
+                  <span>Műfaj:</span>
+                  <%kategoria.forEach((item,index) => {%>
+                    <%if(index!=kategoria.length-1){%>
+                      <a href="#"><%=item.kategoria%>,</a>
+                      <%}else{%>
+                        <a href="#"><%=item.kategoria%></a>
+                        <%}%>
+                        
+                  <%});%>
+                </li>
+                <li><span>Kiadás év:</span> <%=list[0].Ev%></li>
+                <li><span>Hossz:</span> <%=list[0].hossz%></li>
+                <li><span>Rendező:</span> <a href="#"><%=list[0].Rendezo%></a></li>
+                <li><span>Színészek:</span>
+                  <%szineszek.forEach((item,index) => {%>
+                    <%if(index!=szineszek.length-1){%>
+                      <a href="#"><%=item.szinesz%>,</a>
+                      <%}else{%>
+                        <a href="#"><%=item.szinesz%></a>
+                        <%}%>
+                        
+                  <%});%>
+                </li>
+              </ul>
+              <div
+                class="b-description_readmore_wrapper js-description_readmore_wrapper"
+                style="max-width: 785px"
+              >
+                <div
+                  class="card__description card__description--details"
+                  style="min-height: 130px; overflow: hidden; height: 208px"
+                >
+                <%=list[0].Attekinto%>
+                </div>
+                <div
+                  class="b-description_readmore_button b-description_readmore_button_active"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+  </body>
+</html>

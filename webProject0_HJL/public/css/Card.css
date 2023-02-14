@@ -84,7 +84,7 @@ transition: .5s;
     text-decoration: none;
   }
   .card__title a:hover {
-    color: rgb(255, 170, 0);
+    color: rgb(185, 31, 185);
   }
   .card__title a {
     color: var(--complementer);

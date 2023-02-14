@@ -18,8 +18,7 @@ async function SelectFilm(pageNo) {
 
 async function SelectFilmek(pageNo) {
     return new Promise((resolve, reject) => {
-        pool.query('SELECT filmek.*,kategoria.kategoria FROM filmek '+
-        'INNER JOIN kategoria ON filmek.KategoriaID = kategoria.kategoriaid LIMIT 18 offset ?',pageNo*18 , (error, elements) => {
+        pool.query('SELECT filmek.* FROM filmek LIMIT 18 offset ?',pageNo*18 , (error, elements) => {
             if (error) {
                 return reject(error);
             }
@@ -74,7 +73,40 @@ async function SelectKategoria() {
         });
     });
 };
-
+async function SelectOne(movieId) {
+    return new Promise((resolve, reject) => {
+        pool.query('SELECT * FROM egesz where ID=?', movieId,(error, elements) => {
+            if (error) {
+                return reject(error);
+            }
+            return resolve(elements);
+        });
+    });
+};
+async function SelectActors(movieId) {
+    return new Promise((resolve, reject) => {
+        pool.query(`SELECT sz.Szinesz AS szinesz
+        from szinesz sz, szineszkapcsolo szk
+        WHERE sz.id=szk.SzineszID and szk.Film_id=?`, movieId,(error, elements) => {
+            if (error) {
+                return reject(error);
+            }
+            return resolve(elements);
+        });
+    });
+};
+async function SelectCategory(movieId) {
+    return new Promise((resolve, reject) => {
+        pool.query(`SELECT k.KategNev AS kategoria
+        from kategoria k, kategkapcsolo kk
+        WHERE k.KategId=kk.KategID and kk.FilmID=?`, movieId,(error, elements) => {
+            if (error) {
+                return reject(error);
+            }
+            return resolve(elements);
+        });
+    });
+};
 async function InsertUser(username,password,name,email) {
     return new Promise((resolve, reject) => {
         pool.query('INSERT INTO user (Username,Password,Neve,Email) VALUES (?,titkosit(?),?,?)',
@@ -133,4 +165,7 @@ module.exports = {
   SelectKepekFiltered : SelectKepekFiltered,
   InsertUser: InsertUser,
   VerifyUser: VerifyUser,
+  SelectOne:SelectOne,
+  SelectActors:SelectActors,
+  SelectCategory:SelectCategory
 }

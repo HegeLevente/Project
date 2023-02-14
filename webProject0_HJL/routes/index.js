@@ -33,5 +33,17 @@ router.get('/kereses/:page', async (req, res, next) => {
 });
 
 
+router.get('/film/:id', async (req, res, next) => {
+  try {
+    const movieId=req.params.id;
+    const resultElements = await Db.SelectOne(movieId);
+    const szineszkapcsolo = await Db.SelectActors(movieId);
+    const kategoriakapcsolo = await Db.SelectCategory(movieId);
+    res.render('adatlap.ejs',{list:resultElements,szineszek:szineszkapcsolo,kategoria:kategoriakapcsolo})
+  } catch (e) {
+    console.log(e); // console.log - Hiba esetén.
+    res.sendStatus(500);
+  }
+});
 
 module.exports = router;
