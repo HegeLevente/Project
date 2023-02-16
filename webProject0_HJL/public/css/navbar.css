@@ -55,6 +55,9 @@
 .dropdown{
   margin-right: 10px;
 }
+.dropdown-toggle:hover{
+  background:rgb(131, 23, 131);
+}
 .dropdown-menu a {
   font-size: 18px;
   color: #fff;
