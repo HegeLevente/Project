@@ -44,22 +44,22 @@ span {
 }
 
 .carousel__face:nth-child(1) {
-  background-image: url("");
+  background-image: url("/Filmek/Dead Man/Image_1.jpg");
   transform: rotateY(  0deg) translateZ(500px); }
 .carousel__face:nth-child(2) { 
-  background-image: url("");
+  background-image: url("/Filmek/Forrest Gump/Image_1.jpg");
     transform: rotateY( 60deg) translateZ(500px); }
 .carousel__face:nth-child(3) {
-  background-image: url("");
+  background-image: url("/Filmek/Fear and Loathing in Las Vegas/Image_1.jpg");
   transform: rotateY( 120deg) translateZ(500px); }
 .carousel__face:nth-child(4) {
-  background-image: url("");
+  background-image: url("/Filmek/Fear and Loathing in Las Vegas/Image_1.jpg");
   transform: rotateY(180deg) translateZ(500px); }
   .carousel__face:nth-child(5) {
-    background-image: url("");
+    background-image: url("/Filmek/Fear and Loathing in Las Vegas/Image_1.jpg");
     transform: rotateY(240deg) translateZ(500px); }
     .carousel__face:nth-child(6) {
-      background-image: url("");
+      background-image: url("/Filmek/Fear and Loathing in Las Vegas/Image_1.jpg");
       transform: rotateY(300deg) translateZ(500px); }
 
 @keyframes rotate360 {
