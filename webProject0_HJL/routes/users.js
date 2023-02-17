@@ -42,8 +42,10 @@ router.post('/login', async function(req, res, next) {
       res.send('Hibás belépés')
   else 
    {
+    req.session.Jogosultsag = resultElements[0].Jogosultsag;
     req.session.user_id    = resultElements[0].id;
     req.session.name      = resultElements[0].Username;
+    console.log(resultElements[0].Jogosultsag);
     res.redirect('/kereses');
 }
 });

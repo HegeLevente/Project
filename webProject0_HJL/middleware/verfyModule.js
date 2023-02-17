@@ -9,11 +9,11 @@ checkLogged = (req,res, next)=>{
 
 checkAdmin = (req,res,next)=>
 {
-    if (req.session.jogosultsag==3){
+    if (req.session.Jogosultsag==3){
         next();
         return;
     }
-    else{res.send("Ehhez nincs jogosulsága!")}
+    else{res.render("message", {msg:'Ehhez nincs jogosultsága!',code:403})}
 }
 
 module.exports={
