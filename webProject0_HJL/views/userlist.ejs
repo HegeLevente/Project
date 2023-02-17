@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="/css/navbar.css" />
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/userlist.css">
+    <title>Felhasználókezelés</title>
+</head>
+<body>
+    <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Username</th>
+              <th>Email</th>
+              <th>Permissions</th>
+              <th>Created</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% list.forEach(function(item) { %>
+              <tr>
+                <td><%= item.id %></td>
+                <td><%= item.Neve %></td>
+                <td><%= item.Username %></td>
+                <td><%= item.Email %></td>
+                <td><%= item.Jogosultsag %></td>
+                <td><%= item.Letrehozas %></td>
+              </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
+      
+</body>
+</html>

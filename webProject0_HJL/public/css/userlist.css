@@ -1,0 +1,44 @@
+/* Set font family and size for table */
+table {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  background-color: #fff;
+}
+
+/* Set background color and text color for table header */
+thead tr {
+  background-color: #333;
+  color: #fff;
+}
+
+/* Set background color for alternating rows */
+tbody tr:nth-child(even) {
+  background-color: rgb(255, 255, 0);
+}
+
+/* Set background color and text color for table cells */
+td {
+  background-color: rgb(185, 31, 185);
+  color: #fff;
+}
+
+/* Add padding and border to table cells */
+td, th {
+  padding: 8px;
+  border: 1px solid #ccc;
+}
+
+/* Set text alignment to center for table header */
+thead th {
+  text-align: center;
+}
+
+/* Set text alignment to left for table cells */
+td {
+  text-align: left;
+}
+
+/* Add hover effect on table rows */
+tbody tr:hover {
+  background-color: #ccc;
+}

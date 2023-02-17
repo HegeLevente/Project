@@ -7,7 +7,7 @@ const session = require('express-session'); // munkamenet azonosításához
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
+var adminRouter = require('./routes/admin');
 var app = express();
 app.use(express.static('public'))
 
@@ -32,10 +32,13 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/css',express.static(path.join(__dirname,'/node_modules/bootstrap/dist/css')));
 app.use('/js',express.static(path.join(__dirname,'/node_modules/bootstrap/dist/js')));
+app.use('/js',express.static(path.join(__dirname,'/node_modules/@splidejs/dist/js')));
+app.use('/css',express.static(path.join(__dirname,'/node_modules/@splidejs/dist/css')));
 
 
 app.use('/', indexRouter);
 app.use('/user', usersRouter);
+app.use('/admin', adminRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
