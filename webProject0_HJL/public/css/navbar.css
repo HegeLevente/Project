@@ -92,3 +92,22 @@
   left: auto;
   right: 0;
 }
+.dropdown-item{
+  width: 100%;
+}
+.header__sign-in {
+  border-radius: 20%;
+  border: 2px solid var(--main);
+  display: flex;
+}
+.header__sign-in .user-menu-avatar {
+  margin-left: 0px;
+  height: 32px;
+  width: 32px;
+  background-color: #2e3648;
+  border-radius: 50% !important;
+}
+img {
+  vertical-align: middle;
+  border-style: none;
+}

@@ -47,9 +47,9 @@ async function SelectFilmek(pageNo) {
     );
   });
 }
-/*async function SelectFilmekIndex(pageNo) {
+async function SelectFilmekIndex() {
     return new Promise((resolve, reject) => {
-        pool.query('select filmek.* from  filmek'+
+        pool.query('select filmek.* from  filmek '+
         'where Kezdolapon = true;', (error, elements) => {
             if (error) {
                 return reject(error);
@@ -57,7 +57,7 @@ async function SelectFilmek(pageNo) {
             return resolve(elements);
         });
     });
-};*/
+}; 
 async function SelectKategoria() {
   return new Promise((resolve, reject) => {
     pool.query("SELECT * FROM kategoria", (error, elements) => {
@@ -168,9 +168,19 @@ async function VerifyUser(username, password) {
     );
   });
 }
-
+async function SelectOneUser(user_id) {
+  return new Promise((resolve, reject) => {
+    pool.query("SELECT Username,Email,Profilkep,Neve,Letrehozas FROM user where id=?", user_id, (error, elements) => {
+      if (error) {
+        return reject(error);
+      }
+      return resolve(elements);
+    });
+  });
+}
 //  külső név : belső név
 module.exports = {
+  SelectOneUser: SelectOneUser,
   SelectUser: SelectUser,
   SelectFilmek: SelectFilmek,
   SelectFilm: SelectFilm,
@@ -182,4 +192,5 @@ module.exports = {
   SelectOne: SelectOne,
   SelectActors: SelectActors,
   SelectCategory: SelectCategory,
+  SelectFilmekIndex: SelectFilmekIndex
 };

@@ -6,9 +6,19 @@
   margin: auto;
   width: max-content;
 }
-.card{
-  padding:0;
+.carousel-control-prev,
+.carousel-control-next {
+  font-size: 1rem;
+  width: 2rem;
+  height: 2rem;
+  color: #333;
+  background-color: #fff;
+  border: 1px solid #333;
 }
-.card-wrapper{
-  
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+  color: #fff;
+  background-color: #333;
+  border: 1px solid #333;
 }

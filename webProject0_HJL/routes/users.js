@@ -32,6 +32,16 @@ router.get('/reg', async function (req, res, next) {
   }
 }
 );
+router.get('/profil/:id', async (req, res, next) => {
+  try {
+    const user_id=req.session.user_id;
+    const resultElements = await Db.SelectOneUser(user_id);
+    res.render('profil.ejs',{list:resultElements,session: req.session})
+  } catch (e) {
+    console.log(e); // console.log - Hiba esetén.
+    res.sendStatus(500);
+  }
+});
 router.post('/login', async function(req, res, next) {
   let username = req.body.Username;
   let password = req.body.Password;
@@ -45,9 +55,10 @@ router.post('/login', async function(req, res, next) {
     req.session.Jogosultsag = resultElements[0].Jogosultsag;
     req.session.user_id    = resultElements[0].id;
     req.session.name      = resultElements[0].Username;
-    console.log(resultElements[0].Jogosultsag);
+    req.session.profilkep = resultElements[0].Profilkep;
     res.redirect('/kereses');
-}
+    console.log(req.session.user_id)
+  }
 });
 router.post('/reg', async function(req, res, next) {
   let username = req.body.username;

@@ -27,10 +27,16 @@
           Profil
         </a>
         <ul class="dropdown-menu">
+          <% if (!locals.session.Jogosultsag) { %>
           <li><a class="dropdown-item" href="https://localhost/user/reg">Regisztráció</a></li>
           <li><a class="dropdown-item" href="https://localhost/user/login">Bejelentkezés</a></li>
+          <% }else{ %>
+          <li><a class="dropdown-item header__sign-in" href="https://localhost/user/profil/<%=session.user_id %>"><%= session.name%> <img src="/profile/<%= session.profilkep%>"class="user-menu-avatar" alt=""></a></li>
+          <li><a class="dropdown-item" href="https://localhost/user/logout">Kijelentkezés</a></li>
+          <% } %>
         </ul>
       </div>
+      <% if (locals.session.Jogosultsag==3) { %>
       <div class="dropdown">
         <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
           Adminisztrátor
@@ -41,6 +47,8 @@
           <li><a class="dropdown-item" href="">Kategóriák kezelése</a></li>
           <li><a class="dropdown-item" href="">Egyéb</a></li>
         </ul>
+
       </div>
+      <% } %>
     </div>
   </nav>

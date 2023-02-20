@@ -1,16 +1,18 @@
 <div class="container">
     <div class="row row--grid">
-<% list.forEach(function(item,index) { %>
-    <div class="col-6 col-sm-4 col-md-3 col-xl-2"> 
-        <div class="card">
-            <div class="card__cover">
-            <img height="270px" src="/Filmek/<%=item.EredetiCim%>/Image_1.jpg" alt="Movie poster">
-        </div>  
-        <div class="card__content">
-            <h4 class="card__title">
-                <a href="film/<%=item.FilmID%>"><%= item.MagyarCim %></a>
-            </h4>
-        </div>
-    </div>  
+        <% list.forEach(function(item,index) { %>
+            <div class="col-6 col-sm-5 col-md-3 col-lg-2">
+                <div class="card">
+                    <div class="card__cover">
+                        <img height="270px" src="/Filmek/<%=item.EredetiCim%>/Image_1.jpg" alt="Movie poster">
+                    </div>  
+                    <div class="card__content">
+                        <h4 class="card__title">
+                            <a href="film/<%=item.FilmID%>"><%= item.MagyarCim %></a>
+                        </h4>
+                    </div>
+                </div>  
+            </div>
+        <% }); %>
+    </div>
 </div>
-<% }); %>
