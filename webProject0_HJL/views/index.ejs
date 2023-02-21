@@ -1,47 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Coding by CodingLab | www.codinglabweb.com -->
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Responsive Card Slider</title>
 
-    <link rel="stylesheet" href="/css/bootstrap.min.css" />
-    <script src="/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/index.css" />
-    <link rel="stylesheet" href="/css/Card.css">
-  </head>
-  <body>
-    <div class="card-deck">
-      <% for(var i = startIndex; i < endIndex; i++) { %>
-        <div class="card">
-          <img src="<%= list[i].imgPath %>" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title"><%= list[i].title %></h5>
-            <p class="card-text"><%= list[i].description %></p>
-          </div>
-        </div>
-      <% } %>
-    </div>
-    <nav>
-      <ul class="pagination">
-        <% if (currentPage > 1) { %>
-          <li class="page-item">
-            <a class="page-link" href="/?page=<%= currentPage - 1 %>" tabindex="-1" aria-disabled="true">Previous</a>
-          </li>
-        <% } %>
-        <% for(var i = 1; i <= totalPages; i++) { %>
-          <li class="page-item <%= currentPage == i ? 'active' : '' %>">
-            <a class="page-link" href="/?page=<%= i %>"><%= i %></a>
-          </li>
-        <% } %>
-        <% if (currentPage < totalPages) { %>
-          <li class="page-item">
-            <a class="page-link" href="/?page=<%= currentPage + 1 %>">Next</a>
-          </li>
-        <% } %>
-      </ul>
-    </nav>
+        <!-- Swiper CSS -->
+        <link rel="stylesheet" href="css/swiper-bundle.min.css">
+
+        <!-- CSS -->
+
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <script src="/js/bootstrap.bundle.min.js"></script>
     
-  </body>
+    
+        <link rel="stylesheet" href="/css/navbar.css" />
+        <link rel="stylesheet" href="/css/Card.css" />
+        <link rel="stylesheet" href="/css/main.css"/>
+ 
+                                        
+    </head>
+    <body>
+         <%- include('navbar.ejs') %>
+         <div class="slide-container swiper">
+          <div class="slide-content">
+              <div class="card-wrapper swiper-wrapper">
+                <% list.forEach(function(item,index){ %>
+                  <div class="card swiper-slide">
+                    <div class="card__cover">
+                      <img src="Userprofile/profile1.jpg" alt="" class="card-img">
+                    </div>
+                    <div class="card__content">
+                      <h4 class="card__title">
+                          <a href="film/<%=item.FilmID%>"><%= item.MagyarCim %></a>
+                      </h4>
+                  </div>
+                          
+                  </div>
+                      <% }); %>
+              </div>
+          </div>
+      </div>
+      
+
+            <div class="swiper-button-next swiper-navBtn"></div>
+            <div class="swiper-button-prev swiper-navBtn"></div>
+            <div class="swiper-pagination"></div>
+        </div>
+        
+    </body>
+
+    <!-- Swiper JS -->
+    <script src="js/swiper-bundle.min.js"></script>
+
+    <!-- JavaScript -->
+    <script src="js/script.js"></script>
 </html>

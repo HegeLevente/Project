@@ -1,4 +1,5 @@
 const mysql = require("mysql2");
+const { password } = require("./dbconfig");
 var config = require("./dbconfig");
 
 const pool = mysql.createPool(config);
@@ -153,6 +154,35 @@ async function DeleteFavorite(username, flimid) {
     );
   });
 }
+async function UpdateUser(id,Username,Password,Neve,Email,Profilkep) {
+  return new Promise((resolve, reject) => {
+    sqlPw='';
+    sqlImg='';
+    par=[Username,Neve,Email]
+
+
+    if (Password && Passsword.length>2){
+        sqlPw=',password=titkosit(?)'
+        par.push(Password)
+    }
+    if (Profilkep && Profilkep.length>0){
+      sqlPw=',password=titkosit(?)'
+      par.push(Password)
+     }
+     sqlWhere=' Where id=?';
+     par.push(id);
+
+
+     sql ='Update user set Username=?,Neve?,Email=?'+sqlPw +sqlImg+sqlWhere;
+
+      pool.query(sql,par,(error,elements)=>{
+        if(error){
+          return reject(error);
+        }
+        return resolve(elements);
+      })
+    })
+  };
 
 async function VerifyUser(username, password) {
   return new Promise((resolve, reject) => {
@@ -170,7 +200,7 @@ async function VerifyUser(username, password) {
 }
 async function SelectOneUser(user_id) {
   return new Promise((resolve, reject) => {
-    pool.query("SELECT Username,Email,Profilkep,Neve,Letrehozas FROM user where id=?", user_id, (error, elements) => {
+    pool.query("SELECT Username,Email,Profilkep,Neve,Date(Letrehozas) as Letrehozas FROM user where id=?", user_id, (error, elements) => {
       if (error) {
         return reject(error);
       }
@@ -192,5 +222,6 @@ module.exports = {
   SelectOne: SelectOne,
   SelectActors: SelectActors,
   SelectCategory: SelectCategory,
-  SelectFilmekIndex: SelectFilmekIndex
+  SelectFilmekIndex: SelectFilmekIndex,
+  UpdateUser:UpdateUser
 };

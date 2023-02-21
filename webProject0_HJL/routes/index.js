@@ -6,9 +6,9 @@ var path = require('path');      // útvonalhoz
 var Db = require('../db/dboperation');
 var verify= require('../middleware/verfyModule')
 /* GET home page. */
-router.get('/', function (req, res, next) {
-
-  res.render('index.ejs', { session : req.session});
+router.get('/', async (req, res, next) => {
+  const resultElements = await Db.SelectFilmekIndex();
+  res.render('index.ejs', {list:resultElements, session : req.session});
 
 });
 

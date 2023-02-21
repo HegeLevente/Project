@@ -28,7 +28,7 @@
           <div class="col-12 col-xl-11">
             <div class="card card--details card--series">
               <div class="card__cover">
-                <img src="/profile/<%= list[0].Profilkep%>" alt="" />
+                <img src="/Userprofile/<%= list[0].Profilkep%>" alt="" />
               </div>
 
               <div class="card__content">
@@ -41,7 +41,9 @@
                   <li>
                     <span>Profil létrehozásának ideje:</span> <a href="#"><%=list[0].Letrehozas%></a>
                   </li>
-          
+                  <li>
+                    <a href="/user/profil/valtoztat">Adatok megváltoztatása</a>
+                  </li>
                 </ul>
               </div>
             </div>
