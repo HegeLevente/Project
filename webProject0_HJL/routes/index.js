@@ -32,7 +32,27 @@ router.get('/kereses/:page', async (req, res, next) => {
     res.sendStatus(500);
   }
 });
-
+router.get('/szures', async (req, res, next) => {
+  try {
+    res.render('szures.ejs',{session: req.session})
+  } catch (e) {
+    console.log(e); // console.log - Hiba esetén.
+    res.sendStatus(500);
+  }
+});
+router.post('/szures', async (req, res, next) => {
+  try {
+    MagyarCim = req.body.MagyarCim;
+    Rendezo = req.body.Rendezo;
+    Ev = req.body.Ev;
+    EredetiCim = req.body.EredetiCim
+    const resultElements = await Db.SearchFilm(MagyarCim,Rendezo,Ev,EredetiCim);
+    res.render('talalatok',{list:resultElements, session: req.session})
+  } catch (e) {
+    console.log(e); // console.log - Hiba esetén.
+    res.sendStatus(500);
+  }
+});
 
 router.get('/film/:id', async (req, res, next) => {
   try {

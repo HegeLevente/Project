@@ -12,7 +12,7 @@
           <a class="nav-link" href="/kereses">All</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Actors</a>
+          <a class="nav-link" href="/szures">Szűrés</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Category</a>
@@ -28,11 +28,11 @@
         </a>
         <ul class="dropdown-menu">
           <% if (!locals.session.Jogosultsag) { %>
-          <li><a class="dropdown-item" href="https://localhost/user/reg">Regisztráció</a></li>
-          <li><a class="dropdown-item" href="https://localhost/user/login">Bejelentkezés</a></li>
+          <li><a class="dropdown-item" href="/user/reg">Regisztráció</a></li>
+          <li><a class="dropdown-item" href="/user/login">Bejelentkezés</a></li>
           <% }else{ %>
-          <li><a class="dropdown-item header__sign-in" href="https://localhost/user/profil"><%= session.name%> <img src="/Userprofile/<%= session.profilkep%>"class="user-menu-avatar" alt=""></a></li>
-          <li><a class="dropdown-item" href="https://localhost/user/logout">Kijelentkezés</a></li>
+          <li><a class="dropdown-item header__sign-in" href="/user/profil"><%= session.name%> <img src="/Userprofile/<%= session.profilkep%>"class="user-menu-avatar" alt=""></a></li>
+          <li><a class="dropdown-item" href="/user/logout">Kijelentkezés</a></li>
           <% } %>
         </ul>
       </div>
@@ -42,7 +42,7 @@
           Adminisztrátor
         </a>
         <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="https://localhost/admin/userlist/1">Felhasználókezelés</a></li>
+          <li><a class="dropdown-item" href="/admin/userlist/1">Felhasználókezelés</a></li>
           <li><a class="dropdown-item" href="">Filmek kezelése</a></li>
           <li><a class="dropdown-item" href="">Kategóriák kezelése</a></li>
           <li><a class="dropdown-item" href="">Egyéb</a></li>

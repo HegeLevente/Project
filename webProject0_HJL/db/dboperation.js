@@ -71,7 +71,7 @@ async function SelectKategoria() {
 }
 async function SelectOne(movieId) {
   return new Promise((resolve, reject) => {
-    pool.query("SELECT * FROM egesz where ID=?", movieId, (error, elements) => {
+    pool.query("SELECT * FROM egesz where FilmID=?", movieId, (error, elements) => {
       if (error) {
         return reject(error);
       }
@@ -183,7 +183,38 @@ async function UpdateUser(id,Username,Password,Neve,Email,Profilkep) {
       })
     })
   };
+  async function SearchFilm(MagyarCim,Rendezo,Ev,EredetiCim) {
+    return new Promise((resolve, reject) => {
+      sql="Select * from egesz where"
+      par =[];
+      if (MagyarCim){
+        sql=sql+" MagyarCim=?"
+        par.push(MagyarCim);
+      }
+      if (Rendezo){
+        if (MagyarCim){sql=sql+" and "}
+        sql=sql+" Rendezo=?"
+        par.push(Rendezo);
+      }
+      if (Ev){
+        if (MagyarCim || Rendezo){sql=sql+" and "}
+        sql=sql+" Ev=?"
+        par.push(Ev);
+      }
+      if (EredetiCim){
+        if (MagyarCim || Rendezo || Ev){sql=sql+" and "}
+        sql=sql+" EredetiCim=?"
+        par.push(EredetiCim);
+      }
 
+        pool.query(sql,par,(error,elements)=>{
+          if(error){
+            return reject(error);
+          }
+          return resolve(elements);
+        })
+      })
+    };
 async function VerifyUser(username, password) {
   return new Promise((resolve, reject) => {
     pool.query(
@@ -223,5 +254,6 @@ module.exports = {
   SelectActors: SelectActors,
   SelectCategory: SelectCategory,
   SelectFilmekIndex: SelectFilmekIndex,
-  UpdateUser:UpdateUser
+  UpdateUser:UpdateUser,
+  SearchFilm:SearchFilm
 };

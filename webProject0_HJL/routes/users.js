@@ -46,7 +46,6 @@ router.get('/profil', async (req, res, next) => {
   try {
     const user_id=req.session.user_id;
     const resultElements = await Db.SelectOneUser(user_id);
-    console.log("profil")
     res.render('profil.ejs',{list:resultElements,session: req.session})
   } catch (e) {
     console.log(e); // console.log - Hiba esetén.
@@ -57,7 +56,6 @@ router.get('/profil/valtoztat', async (req, res, next) => {
   try {
     const user_id=req.session.user_id;
     const resultElements = await Db.SelectOneUser(user_id);
-    console.log("belep")
     res.render('valtoztat',{list:resultElements,session: req.session})
   } catch (e) {
     console.log(e); // console.log - Hiba esetén.
