@@ -9,7 +9,7 @@ var verify= require('../middleware/verfyModule')
 router.get('/', async (req, res, next) => {
   const resultElements = await Db.SelectFilmekIndex();
   res.render('index.ejs', {list:resultElements, session : req.session});
-
+  
 });
 
 router.get('/kereses', async (req, res, next) => {

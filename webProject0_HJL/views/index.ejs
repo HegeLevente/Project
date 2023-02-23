@@ -30,16 +30,15 @@
                 <% list.forEach(function(item,index){ %>
                   <div class="card swiper-slide">
                     <div class="card__cover">
-                      <img src="Userprofile/profile1.jpg" alt="" class="card-img">
+                      <img height="270px"  src="/Filmek/<%= item.EredetiCim%>/Image_1.jpg" alt="">
                     </div>
                     <div class="card__content">
                       <h4 class="card__title">
                           <a href="film/<%=item.FilmID%>"><%= item.MagyarCim %></a>
                       </h4>
+                    </div>
                   </div>
-                          
-                  </div>
-                      <% }); %>
+                <% }); %>
               </div>
           </div>
       </div>

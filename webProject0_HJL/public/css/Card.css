@@ -98,4 +98,7 @@ transition: .5s;
       transition-property: all;
     transition-property: color;
   }
-  /*-------------
+  /*-------------*/
+  .slide-container{
+
+  }

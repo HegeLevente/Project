@@ -6,6 +6,7 @@ var path = require('path');      // útvonalhoz
 
 var verify= require('../middleware/verfyModule')
 var Db = require('../db/dboperation');
+const session = require('express-session');
 
 var storage = multer.diskStorage({
   destination: function(req,file,cb){
@@ -24,7 +25,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/login', async function (req, res, next) {
   try { 
-    res.render('login');
+    res.render('login',{session: req.session});
 
   } catch (e) {
     console.log(e); // console.log - Hiba esetén.
@@ -34,7 +35,7 @@ router.get('/login', async function (req, res, next) {
 );
 router.get('/reg', async function (req, res, next) {
   try { 
-    res.render('reg');
+    res.render('reg',{session: req.session});
 
   } catch (e) {
     console.log(e); // console.log - Hiba esetén.
