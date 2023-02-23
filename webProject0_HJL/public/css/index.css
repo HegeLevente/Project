@@ -1,93 +1,15 @@
-.home {
-  margin-top: 70px;
-  position: relative;
-  display: block;
-  background-color: #1a191f;
-  padding: 50px 0;
-  overflow: hidden;
-}
-.home--bg::before {
-  content: '';
-  z-index: 1;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  display: block;
-  background: url("https://animedrive.hu/background") no-repeat center/cover;
-  opacity: .1;
-}
-.home .container {
-  position: relative;
-  z-index: 2;
+.Container {
+  position: relative; 
 }
 
-
-.home__title {
-  color: var(--complementer);
-  text-transform: uppercase;
-  font-weight: 300;
-  font-size: 32px;
-  line-height: 42px;
-  margin: 0;
-  padding-right: 70px;
-}
-button {
-  padding: 0;
-  border: none;
-  background-color: transparent;
-  transition: .4s;
-  cursor: pointer;
-  transition-property: color,background-color,border-color,opacity;
-}
-.home__nav {
-  font-size: 36px;
-  color: var(--complementer);
-  opacity: .7;
-  position: absolute;
-  top: 50%;
-  height: 24px;
-  margin-top: -12px;
-  right: 15px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  z-index: 2;
-  transition: .4s ease;
-}
-.home__nav--prev {
-  right: 55px;
-}
-.home__title b {
-  font-weight: 600;
+.swiper-navBtn {
+  position: absolute; 
+  z-index: 1; 
+  top: 50%; 
+  transform: translateY(-50%); 
 }
 
-
-
-
-
-
-
-@media (min-width: 1200px){
-.home__title {
-  font-size: 40px;
-}
-}
-  @media (min-width: 768px){
-.home__title {
-  font-size: 36px;
-}
-  }
-@media (min-width: 1440px){
-.container {
-  max-width: 1310px;
-}
-}
-@media (min-width: 768px) {
-  .home {
-    margin-top: 80px;
-    padding: 70px 0;
-  }
+.card {
+  position: relative; 
+  z-index: 0; 
 }

@@ -2,19 +2,30 @@
 <html>
   <head>
     <title>Registration Form</title>
+    <link rel="stylesheet" href="/css/bootstrap-grid.min.css" />
+    <link rel="stylesheet" href="/css/bootstrap-reboot.min.css" />
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <script src="/js/bootstrap.bundle.min.js"></script>
+
+    <link rel="stylesheet" href="/css/main.css" />
     <link rel="stylesheet" href="/css/szures.css">
-    <link rel="stylesheet" href="/css/main.css"/>
+    <link rel="stylesheet" href="/css/navbar.css" />
   </head>
   <body>
+    <%- include('navbar.ejs') %>
     <div class="szures-container">
-      <form action="/szures" method="post">
+      <form action="/szures" method="post" class="input">
         <h1>Keresés</h1>
         <input type="text" placeholder="Magyar Címe" name="MagyarCim">
         <input type="text" placeholder="Eredeti Címe" name="EredetiCim">
         <input type="number" min="1927" max="1999" placeholder="Év" name="Ev">
         <input type="text" placeholder="Rendező" name="Rendezo">
-        <input type="text" placeholder="Színész" name="Szinesz">
-        <input type="text" placeholder="Kategória" name="Kategoria">
+        <select name="Kategoria">
+          <option selected="true"></option>
+          <%- include('category.ejs')%></select>
+        <select name="Szinesz">
+          <option selected="true"></option>
+          <%- include('actor.ejs')%></select>
         <input type="submit" value="Submit">
       </form>
     </div>

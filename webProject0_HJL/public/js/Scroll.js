@@ -3,7 +3,6 @@ currentPage=1;
 const handleInfiniteScroll = () => {
     const endOfPage =
      window.innerHeight + window.scrollY >= document.body.offsetHeight-10;
-
     if (endOfPage) {
       appendContent(++currentPage)
     }
@@ -20,8 +19,9 @@ const removeInfiniteScroll = () => {
 };
 
 function appendContent(page){
+  
   const divShowData = document.getElementById("hely");
-  myData = getData("/kereses/"+page);
+  myData = getData("/filmek/"+page);
   myData.then(result => {
     nextPage=page+1;
     divShowData.innerHTML+=result;

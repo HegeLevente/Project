@@ -12,15 +12,15 @@ router.get('/', async (req, res, next) => {
   
 });
 
-router.get('/kereses', async (req, res, next) => {
+router.get('/filmek', async (req, res, next) => {
   try {
-    res.render('kereses.ejs',{session: req.session})
+    res.render('filmek.ejs',{session: req.session})
   } catch (e) {
     console.log(e); // console.log - Hiba esetén.
     res.sendStatus(500);
   }
 });
-router.get('/kereses/:page', async (req, res, next) => {
+router.get('/filmek/:page', async (req, res, next) => {
   try {
     pageNo = req.params.page-1;
     if(pageNo<1 || isNaN(pageNo)){ pageNo=0}
@@ -34,7 +34,9 @@ router.get('/kereses/:page', async (req, res, next) => {
 });
 router.get('/szures', async (req, res, next) => {
   try {
-    res.render('szures.ejs',{session: req.session})
+    const category = await Db.SelectKategoria();
+    const actor = await Db.SelectSzinesz();
+    res.render('szures.ejs',{session: req.session,category:category, actor:actor})
   } catch (e) {
     console.log(e); // console.log - Hiba esetén.
     res.sendStatus(500);
@@ -46,7 +48,19 @@ router.post('/szures', async (req, res, next) => {
     Rendezo = req.body.Rendezo;
     Ev = req.body.Ev;
     EredetiCim = req.body.EredetiCim
-    const resultElements = await Db.SearchFilm(MagyarCim,Rendezo,Ev,EredetiCim);
+    Kategoria = req.body.Kategoria
+    Szinesz = req.body.Szinesz
+    const resultElements = await Db.SearchFilm(MagyarCim,Rendezo,Ev,EredetiCim,Kategoria,Szinesz);
+    res.render('talalatok',{list:resultElements, session: req.session})
+  } catch (e) {
+    console.log(e); // console.log - Hiba esetén.
+    res.sendStatus(500);
+  }
+});
+router.post('/kereses', async (req, res, next) => {
+  try {
+    Kereses= req.body.Kereses
+    const resultElements = await Db.SearchFilmAll(Kereses);
     res.render('talalatok',{list:resultElements, session: req.session})
   } catch (e) {
     console.log(e); // console.log - Hiba esetén.

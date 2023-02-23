@@ -4,36 +4,6 @@ var config = require("./dbconfig");
 
 const pool = mysql.createPool(config);
 
-async function SelectFilm(pageNo) {
-  return new Promise((resolve, reject) => {
-    pool.query(
-      "SELECT * from filmek LIMIT 50 OFFSET ?",
-      pageNo * 50,
-      (error, elements) => {
-        if (error) {
-          return reject(error);
-        }
-        return resolve(elements);
-      }
-    );
-  });
-}
-
-//---------------------------------------------------------
-
-async function SelectUser(pageNo) {
-  return new Promise((resolve, reject) => {
-    pool.query(
-      "SELECT id, Username, Neve, Email,Jogosultsag,Letrehozas FROM user LIMIT 50 offset ?",pageNo*50,
-      (error, elements) => {
-        if (error) {
-          return reject(error);
-        }
-        return resolve(elements);
-      }
-    );
-  });
-}
 async function SelectFilmek(pageNo) {
   return new Promise((resolve, reject) => {
     pool.query(
@@ -59,9 +29,10 @@ async function SelectFilmekIndex() {
         });
     });
 }; 
+/*Szures*/
 async function SelectKategoria() {
   return new Promise((resolve, reject) => {
-    pool.query("SELECT * FROM kategoria", (error, elements) => {
+    pool.query('SELECT k.KategNev AS kategoria from kategoria k', (error, elements) => {
       if (error) {
         return reject(error);
       }
@@ -69,6 +40,80 @@ async function SelectKategoria() {
     });
   });
 }
+async function SelectSzinesz() {
+  return new Promise((resolve, reject) => {
+    pool.query('SELECT sz.Szinesz AS szinesz from szinesz sz', (error, elements) => {
+      if (error) {
+        return reject(error);
+      }
+      return resolve(elements);
+    });
+  });
+}
+async function SearchFilm(MagyarCim,Rendezo,Ev,EredetiCim,Kategoria,Szinesz) {
+  return new Promise((resolve, reject) => {
+    sql="Select * from egesz where"
+    par =[];
+    if (MagyarCim){
+      sql=sql+" MagyarCim LIKE ?"
+      MagyarCim = "%"+MagyarCim+"%";
+      par.push(MagyarCim);
+    }
+    if (Kategoria){
+      if (MagyarCim){sql=sql+" and "}
+      sql=sql+" Kategoria LIKE ?"
+      Kategoria = "%"+Kategoria+"%";
+      par.push(Kategoria);
+    }
+    if (Szinesz){
+      if (MagyarCim || Kategoria){sql=sql+" and "}
+      sql=sql+" Szinesz LIKE ?"
+      Szinesz = "%"+Szinesz+"%";
+      par.push(Szinesz);
+    }
+    if (Rendezo){
+      if (MagyarCim || Szinesz || Kategoria){sql=sql+" and "}
+      sql=sql+" Rendezo LIKE ?";
+      Rendezo = "%"+Rendezo+"%";
+      par.push(Rendezo);
+    }
+    if (Ev){
+      if (MagyarCim|| Szinesz || Kategoria || Rendezo){sql=sql+" and "}
+      sql=sql+" Ev=?"
+      par.push(Ev);
+    }
+    if (EredetiCim){
+      if (MagyarCim|| Szinesz || Kategoria || Rendezo || Ev){sql=sql+" and "}
+      sql=sql+" EredetiCim LIKE ?";
+      EredetiCim = "%"+EredetiCim+"%";
+      par.push(EredetiCim);
+    }
+      pool.query(sql,par,(error,elements)=>{
+        console.log(sql)
+        console.log(par)
+        if(error){
+          return reject(error);
+        }
+        return resolve(elements);
+      })
+    })
+};
+async function SearchFilmAll(Kereses) {
+  return new Promise((resolve, reject) => {
+    console.log(Kereses)
+    sql="Select * from egesz where MagyarCim like ? or EredetiCim like ? or Szinesz like ? or Kategoria like ? or Attekinto like ? or Rendezo like ? or hossz like ? or Ev like ? "
+    par=["%"+Kereses+"%","%"+Kereses+"%","%"+Kereses+"%","%"+Kereses+"%","%"+Kereses+"%","%"+Kereses+"%","%"+Kereses+"%","%"+Kereses+"%",]
+      pool.query(sql,par,(error,elements)=>{
+        console.log(sql)
+        if(error){
+          return reject(error);
+        }
+        return resolve(elements);
+      })
+    })
+};
+/*------*/
+/*Adatlap*/ 
 async function SelectOne(movieId) {
   return new Promise((resolve, reject) => {
     pool.query("SELECT * FROM egesz where FilmID=?", movieId, (error, elements) => {
@@ -82,9 +127,7 @@ async function SelectOne(movieId) {
 async function SelectActors(movieId) {
   return new Promise((resolve, reject) => {
     pool.query(
-      `SELECT sz.Szinesz AS szinesz
-        from szinesz sz, szineszkapcsolo szk
-        WHERE sz.id=szk.SzineszID and szk.Film_id=?`,
+      `SELECT sz.Szinesz AS szinesz from szinesz sz, szineszkapcsolo szk  WHERE sz.id=szk.SzineszID and szk.Film_id=?`,
       movieId,
       (error, elements) => {
         if (error) {
@@ -111,21 +154,7 @@ async function SelectCategory(movieId) {
     );
   });
 }
-
-async function InsertUser(username, password, name, email) {
-  return new Promise((resolve, reject) => {
-    pool.query(
-      "INSERT INTO user (Username,Password,Neve,Email) VALUES (?,titkosit(?),?,?)",
-      [username, password, name, email],
-      (error, elements) => {
-        if (error) {
-          return reject(error);
-        }
-        return resolve(elements);
-      }
-    );
-  });
-}
+/*------*/
 async function InsertFavorite(username, flimid) {
   return new Promise((resolve, reject) => {
     pool.query(
@@ -145,6 +174,20 @@ async function DeleteFavorite(username, flimid) {
     pool.query(
       "Delete kedvenckapcsolas from kedvenckapcsolas where FilmID=? and userID=?;",
       [user_id, filmid],
+      (error, elements) => {
+        if (error) {
+          return reject(error);
+        }
+        return resolve(elements);
+      }
+    );
+  });
+}
+async function InsertUser(username, password, name, email) {
+  return new Promise((resolve, reject) => {
+    pool.query(
+      "INSERT INTO user (Username,Password,Neve,Email) VALUES (?,titkosit(?),?,?)",
+      [username, password, name, email],
       (error, elements) => {
         if (error) {
           return reject(error);
@@ -182,44 +225,25 @@ async function UpdateUser(id,Username,Password,Neve,Email,Profilkep) {
         return resolve(elements);
       })
     })
-  };
-  async function SearchFilm(MagyarCim,Rendezo,Ev,EredetiCim) {
-    return new Promise((resolve, reject) => {
-      sql="Select * from egesz where"
-      par =[];
-      if (MagyarCim){
-        sql=sql+" MagyarCim=?"
-        par.push(MagyarCim);
-      }
-      if (Rendezo){
-        if (MagyarCim){sql=sql+" and "}
-        sql=sql+" Rendezo=?"
-        par.push(Rendezo);
-      }
-      if (Ev){
-        if (MagyarCim || Rendezo){sql=sql+" and "}
-        sql=sql+" Ev=?"
-        par.push(Ev);
-      }
-      if (EredetiCim){
-        if (MagyarCim || Rendezo || Ev){sql=sql+" and "}
-        sql=sql+" EredetiCim=?"
-        par.push(EredetiCim);
-      }
-
-        pool.query(sql,par,(error,elements)=>{
-          if(error){
-            return reject(error);
-          }
-          return resolve(elements);
-        })
-      })
-    };
+};
 async function VerifyUser(username, password) {
   return new Promise((resolve, reject) => {
     pool.query(
       "SELECT * FROM filmek.user where Username=? and Password=titkosit(?)",
       [username, password],
+      (error, elements) => {
+        if (error) {
+          return reject(error);
+        }
+        return resolve(elements);
+      }
+    );
+  });
+}
+async function SelectUser(pageNo) {
+  return new Promise((resolve, reject) => {
+    pool.query(
+      "SELECT id, Username, Neve, Email,Jogosultsag,Letrehozas FROM user LIMIT 50 offset ?",pageNo*50,
       (error, elements) => {
         if (error) {
           return reject(error);
@@ -244,7 +268,6 @@ module.exports = {
   SelectOneUser: SelectOneUser,
   SelectUser: SelectUser,
   SelectFilmek: SelectFilmek,
-  SelectFilm: SelectFilm,
   DeleteFavorite: DeleteFavorite,
   InsertFavorite: InsertFavorite,
   SelectKategoria: SelectKategoria,
@@ -255,5 +278,7 @@ module.exports = {
   SelectCategory: SelectCategory,
   SelectFilmekIndex: SelectFilmekIndex,
   UpdateUser:UpdateUser,
-  SearchFilm:SearchFilm
+  SearchFilm:SearchFilm,
+  SelectSzinesz:SelectSzinesz,
+  SearchFilmAll:SearchFilmAll
 };
