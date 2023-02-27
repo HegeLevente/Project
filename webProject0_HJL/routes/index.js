@@ -35,8 +35,19 @@ router.get('/filmek/:page', async (req, res, next) => {
 router.get('/szures', async (req, res, next) => {
   try {
     const category = await Db.SelectKategoria();
-    const actor = await Db.SelectSzinesz();
-    res.render('szures.ejs',{session: req.session,category:category, actor:actor})
+    /*const actor = await Db.SelectSzinesz(nev);*/
+    res.render('szures.ejs',{session: req.session,category:category})
+  } catch (e) {
+    console.log(e); // console.log - Hiba esetén.
+    res.sendStatus(500);
+  }
+});
+router.get('/getActor/:nev', async (req, res, next) => {
+  try {
+    console.log("Belép");
+    nev = req.params.nev;
+    const actor = await Db.SelectSzinesz(nev);
+    res.render('actor.ejs',{session: req.session,actor:actor})
   } catch (e) {
     console.log(e); // console.log - Hiba esetén.
     res.sendStatus(500);

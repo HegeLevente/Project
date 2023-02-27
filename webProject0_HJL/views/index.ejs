@@ -1,61 +1,85 @@
 <!DOCTYPE html>
-    <!-- Coding by CodingLab | www.codinglabweb.com -->
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Responsive Card Slider</title>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Two Sliders</title>
 
-        <!-- Swiper CSS -->
-        <link rel="stylesheet" href="css/swiper-bundle.min.css">
+  <link rel="stylesheet" href="/css/bootstrap.min.css" />
+  <script src="/js/bootstrap.bundle.min.js"></script>
 
-        <!-- CSS -->
-
-        <link rel="stylesheet" href="/css/bootstrap.min.css">
-        <script src="/js/bootstrap.bundle.min.js"></script>
-    
-    
-        <link rel="stylesheet" href="/css/navbar.css" />
-        <link rel="stylesheet" href="/css/Card.css" />
-        <link rel="stylesheet" href="/css/main.css"/>
-        <link rel="stylesheet" href="/css/index.css"/>
- 
-                                        
-    </head>
-    <body>
-      <%- include('navbar.ejs') %>
-      <div class="Container">
-         <div class="slide-container swiper">
-            <div class="slide-content">
-              <div class="card-wrapper swiper-wrapper">
-                <% list.forEach(function(item,index){ %>
-                  <div class="card swiper-slide">
-                    <div class="card__cover">
-                      <img height="270px"  src="/Filmek/<%= item.EredetiCim%>/Image_1.jpg" alt="">
-                    </div>
-                    <div class="card__content">
-                      <h4 class="card__title">
-                          <a href="film/<%=item.FilmID%>"><%= item.MagyarCim %></a>
-                      </h4>
-                    </div>
-                  </div>
-                <% }); %>
+  <link rel="stylesheet" href="/css/navbar.css" />
+  <link rel="stylesheet" href="/css/Card.css" />
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/index.css" />
+  <link rel="stylesheet" href="/css/swiper-bundle.min.css">
+</head>
+<body>
+  <%- include("navbar.ejs") %>
+  <div class="Sliders">
+  <div class="slider-container">
+    <h2>Idén évfordulós</h2>
+    <div class="swiper-container slider1">
+      <div class="swiper-wrapper">
+        <% list.forEach(function(card) { %>
+          <div class="swiper-slide">
+            <div class="card">
+              <div class="card__cover">
+                <img src="/Filmek/<%= card.EredetiCim %>/Image_1.jpg" alt="<%= card.title %>">
+              </div>
+              <div class="card__content">
+                <h4 class="card__title"><a href="/film/<%=card.FilmID%>"><%= card.MagyarCim %></a></h4>
               </div>
             </div>
           </div>
-            <div class="swiper-button-next swiper-navBtn"></div>
-            <div class="swiper-button-prev swiper-navBtn"></div>
-            <div class="swiper-pagination"></div>
-
+        <% }); %>
       </div>
-      
-    </body>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
+  </div>
 
-    <!-- Swiper JS -->
-    <script src="js/swiper-bundle.min.js"></script>
+  <div class="slider-container">
+    <h2>Legnépszerűbb:</h2>
+    <div class="swiper-container slider2">
+      <div class="swiper-wrapper">
+        <% list.forEach(function(card,index) { %>
+        <div class="swiper-slide">
+          <div class="card">
+            <div class="card__cover">
+              <img src="/Filmek/<%= card.EredetiCim %>/Image_1.jpg" alt="<%= card.title %>">
+            </div>
+            <div class="card__content">
+              <h4 class="card__title"><a href="/film/<%=card.FilmID%>"><%= card.MagyarCim %></a></h4>
+            </div>
+          </div>
+        </div>
+        <% }); %>
+      </div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
+  </div>
+</div>
+  <script src="/js/swiper-bundle.min.js"></script>
+  <script> swiper2 = new Swiper('.slider2', {
+    slidesPerView: 6,
+    spaceBetween: 20,
+    navigation: {
+      nextEl: '.slider2 .swiper-button-next',
+      prevEl: '.slider2 .swiper-button-prev',
+    },
+  });
+</script>
+  <script>
+    var swiper1 = new Swiper('.slider1', {
+      slidesPerView: 6,
+      spaceBetween: 20,
+      navigation: {
+        nextEl: '.slider1 .swiper-button-next',
+        prevEl: '.slider1 .swiper-button-prev',
+      },
+    });
+  </script>
 
-    <!-- JavaScript -->
-    <script src="js/script.js"></script>
-    
+</body>
 </html>

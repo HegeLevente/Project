@@ -86,7 +86,7 @@ router.post("/login", async function (req, res, next) {
     req.session.user_id = resultElements[0].id;
     req.session.name = resultElements[0].Username;
     req.session.profilkep = resultElements[0].Profilkep;
-    res.redirect("/kereses");
+    res.redirect("/filmek");
   }
 });
 router.post("/reg", async function (req, res, next) {
@@ -97,20 +97,21 @@ router.post("/reg", async function (req, res, next) {
   let passwrodConf = req.body.passwordConfirm;
   if (passwrodConf === password) {
     const resultElements = await Db.InsertUser(username, password, neve, email);
-  }else{
-    
+    if (resultElements.length == 0) res.redirect("/reg");
+    else {
+      const login = await Db.VerifyUser(username, password);
+      req.session.user_id = resultElements.insertId;
+      req.session.name = username;
+      req.session.Jogosultsag = login[0].Jogosultsag
+      res.redirect("/filmek");
+    }
   }
 
-  if (resultElements.length == 0) res.redirect("/reg");
-  else {
-    req.session.user_id = resultElements.insertId;
-    req.session.name = username;
-    res.redirect("/kereses");
-  }
+  
 });
 router.get("/logout", function (req, res, next) {
   req.session.destroy();
-  res.redirect("/kereses");
+  res.redirect("/filmek");
 });
 //CONCAT('*', UPPER(SHA1(UNHEX(SHA1('mypass')))))
 module.exports = router;

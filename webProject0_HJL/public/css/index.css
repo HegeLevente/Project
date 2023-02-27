@@ -1,15 +1,91 @@
-.Container {
-  position: relative; 
+#slider1 {
+  margin-bottom: 50px;
 }
 
-.swiper-navBtn {
-  position: absolute; 
-  z-index: 1; 
-  top: 50%; 
-  transform: translateY(-50%); 
+#slider1 .swiper-container {
+  width: 100%;
+  height: 100px;
 }
 
-.card {
-  position: relative; 
-  z-index: 0; 
+#slider1 .swiper-slide {
+  width: 200px;
+  height: 250px;
+  margin-right: 10px;
+}
+
+#slider1 .swiper-button-next,
+#slider1 .swiper-button-prev {
+  color: #fff;
+  font-size: 24px;
+  
+}
+
+/* Styles for slider 2 */
+
+#slider2 {
+  display: flex;
+}
+
+#slider2 .swiper-container {
+  width: 100%;
+  height: 300px;
+}
+
+#slider2 .swiper-slide {
+  width: 200px;
+  height: 250px;
+  margin-right: 10px;
+}
+
+#slider2 .swiper-button-next,
+#slider2 .swiper-button-prev {
+  color: #fff;
+  font-size: 24px;
+  margin: 100px
+}
+
+/* Styles for swiper button */
+
+.swiper-button-prev,
+.swiper-button-next {
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  line-height: 1;
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-top: 10px;
+}
+
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.swiper-button-prev {
+  left: 10px;
+}
+
+.swiper-button-next {
+  right: 10px;
+}
+
+.swiper-wrapper{
+  height: 405px;
+}
+.slider-container{
+  position: relative;
+  height: 405px;
+  margin-bottom: 5%;
+}
+.Sliders{
+  padding: 10px;
 }

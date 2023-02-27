@@ -23,7 +23,8 @@
   
   input[type="text"],
   input[type="password"],
-  input[type="number"]{
+  input[type="number"]
+  {
     width: 100%;
     padding: 10px;
     margin-bottom: 20px;
@@ -50,7 +51,15 @@
     border: none;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   }
-
+  #exampleDataList{
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
   
   input[type="submit"] {
     width: 100%;

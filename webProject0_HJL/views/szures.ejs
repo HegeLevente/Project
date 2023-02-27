@@ -23,10 +23,24 @@
         <select name="Kategoria">
           <option selected="true"></option>
           <%- include('category.ejs')%></select>
-        <select name="Szinesz">
-          <option selected="true"></option>
-          <%- include('actor.ejs')%></select>
+          <input class="form-control" list="datalistOptions" id="exampleDataList" name="Szinesz" placeholder="Szinesz" oninput="fillData(this.value);">
+          <datalist id="datalistOptions">
+
+          </datalist>
         <input type="submit" value="Submit">
       </form>
     </div>
+    <script>
+      function fillData(name){
+      const listData = document.getElementById("datalistOptions");
+      url='/getActor/'+name;
+      fetch(url,{method: 'GET'})
+      .then(response => response.text())
+      .then( lista =>{
+      console.log('OK');
+      listData.innerHTML=lista;
+      });
+      }
+      </script>
+  </body>
 </html>
