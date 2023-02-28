@@ -32,6 +32,31 @@
               </div>
 
               <div class="card__content">
+                <% if (locals.session.user_id>0){ %> <% if (!favorite) { %>
+                <div class="button-div">
+                  <form action="/removeFavorite" method="post">
+                    <input type="submit" value="Kivétel a kedvencek közül" />
+                    <input
+                      type="text"
+                      value="<%= list[0].FilmID %>"
+                      name="filmId"
+                      style="display: none"
+                    />
+                  </form>
+                </div>
+                <% } else { %>
+                <div class="button-div">
+                  <form action="/addFavorite" method="post">
+                    <input type="submit" value="Kedvencekhez adás" />
+                    <input
+                      type="text"
+                      value="<%= list[0].FilmID %>"
+                      name="filmId"
+                      style="display: none"
+                    />
+                  </form>
+                </div>
+                <% }; %> <% }; %>
                 <ul class="card__meta">
                   <li>
                     <span>Műfaj:</span>

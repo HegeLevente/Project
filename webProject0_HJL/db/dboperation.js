@@ -155,11 +155,21 @@ async function SelectCategory(movieId) {
   });
 }
 /*------*/
-async function InsertFavorite(username, flimid) {
+async function SelectFavorite(user_id, filmId) {
+  return new Promise((resolve, reject) => {
+    pool.query("SELECT * FROM kedvenckapcsolas where userID=? and FilmID", [user_id,filmId], (error, elements) => {
+      if (error) {
+        return reject(error);
+      }
+      return resolve(elements);
+    });
+  });
+}
+async function InsertFavorite(filmId, user_id) {
   return new Promise((resolve, reject) => {
     pool.query(
       "INSERT INTO kedvenckapcsolas (userID, FilmID) VALUE (?,?)",
-      [username, filmid],
+      [user_id, filmId],
       (error, elements) => {
         if (error) {
           return reject(error);
@@ -169,11 +179,11 @@ async function InsertFavorite(username, flimid) {
     );
   });
 }
-async function DeleteFavorite(username, flimid) {
+async function DeleteFavorite(user_id, filmId) {
   return new Promise((resolve, reject) => {
     pool.query(
-      "Delete kedvenckapcsolas from kedvenckapcsolas where FilmID=? and userID=?;",
-      [user_id, filmid],
+      "Delete * from kedvenckapcsolas where FilmID=? and userID=?;",
+      [user_id, filmId],
       (error, elements) => {
         if (error) {
           return reject(error);
@@ -280,5 +290,6 @@ module.exports = {
   UpdateUser:UpdateUser,
   SearchFilm:SearchFilm,
   SelectSzinesz:SelectSzinesz,
-  SearchFilmAll:SearchFilmAll
+  SearchFilmAll:SearchFilmAll,
+  SelectFavorite:SelectFavorite,
 };
