@@ -9,18 +9,20 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" href="/filmek">All</a>
+          <a class="nav-link" href="/filmek">Filmek</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/szures">Szűrés</a>
         </li>
+        <% if (locals.session.Jogosultsag) { %>
         <li class="nav-item">
-          <a class="nav-link" href="#">Category</a>
+          <a class="nav-link" href="#">Kedvenceim</a>
         </li>
+        <% } %>
       </ul>
       <form class="form-inline my-2 my-lg-0 " action="/kereses" method="post">
         <input class="form-control mr-sm-2" type="search" placeholder="Keresés" aria-label="Search" name="Kereses">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Go</button>
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Keresés</button>
       </form>
       <div class="dropdown">
         <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
