@@ -90,7 +90,8 @@ router.post("/kereses", async (req, res, next) => {
 router.post("/addFavorite", async (req, res, next) => {
   try {
     if (req.session.user_id) {
-      const favorite = await Db.InsertFavorite(req.session.user_id, req.body.FilmID);
+      console.log(req.params.id)
+      const favorite = await Db.InsertFavorite(req.session.user_id, req.params.id);
       res.redirect(req.session.previousURL)
     } else {
       res.render("login");
@@ -115,7 +116,7 @@ router.post("/removeFavorite", async (req, res, next) => {
 });
 router.get("/film/:id", async (req, res, next) => {
   try {
-    req.session.previousURL= "/car/"+req.params.id;
+    req.session.previousURL= "/film/"+req.params.id;
     favorite=false;
     const movieId = req.params.id;
     const chechFav = await Db.SelectFavorite(req.session.id, movieId);

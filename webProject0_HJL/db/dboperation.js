@@ -165,7 +165,7 @@ async function SelectFavorite(user_id, filmId) {
     });
   });
 }
-async function InsertFavorite(filmId, user_id) {
+async function InsertFavorite( user_id, sfilmId) {
   return new Promise((resolve, reject) => {
     pool.query(
       "INSERT INTO kedvenckapcsolas (userID, FilmID) VALUE (?,?)",
