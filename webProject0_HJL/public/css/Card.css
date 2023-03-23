@@ -56,7 +56,8 @@
 
 .card__cover img{
     width: 100%;
-transition: .5s;
+    transition: .5s;
+    height: 270px;
 }
 .card__content {
     position: relative;

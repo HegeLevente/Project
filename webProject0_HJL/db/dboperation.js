@@ -29,6 +29,16 @@ async function SelectFilmekIndex() {
         });
     });
 }; 
+async function SelectFilmekIMDB() {
+  return new Promise((resolve, reject) => {
+      pool.query('select * from filmek f order by f.IMDBertekeles DESC LIMIT 20', (error, elements) => {
+          if (error) {
+              return reject(error);
+          }
+          return resolve(elements);
+      });
+  });
+}; 
 /*Szures*/
 async function SelectKategoria() {
   return new Promise((resolve, reject) => {
@@ -157,15 +167,16 @@ async function SelectCategory(movieId) {
 /*------*/
 async function SelectFavorite(user_id, filmId) {
   return new Promise((resolve, reject) => {
-    pool.query("SELECT * FROM kedvenckapcsolas where userID=? and FilmID", [user_id,filmId], (error, elements) => {
+    pool.query("SELECT kedvencID FROM kedvenckapcsolas where userID=? and FilmID=?", [user_id,filmId], (error, elements) => {
       if (error) {
         return reject(error);
       }
+      
       return resolve(elements);
     });
   });
 }
-async function InsertFavorite( user_id, sfilmId) {
+async function InsertFavorite( user_id, filmId) {
   return new Promise((resolve, reject) => {
     pool.query(
       "INSERT INTO kedvenckapcsolas (userID, FilmID) VALUE (?,?)",
@@ -182,7 +193,7 @@ async function InsertFavorite( user_id, sfilmId) {
 async function DeleteFavorite(user_id, filmId) {
   return new Promise((resolve, reject) => {
     pool.query(
-      "Delete * from kedvenckapcsolas where FilmID=? and userID=?;",
+      "Delete from kedvenckapcsolas where kedvenckapcsolas.UserID=? and kedvenckapcsolas.FilmID=?",
       [user_id, filmId],
       (error, elements) => {
         if (error) {
@@ -191,6 +202,17 @@ async function DeleteFavorite(user_id, filmId) {
         return resolve(elements);
       }
     );
+  });
+}
+async function SelectUserFavorite(user_id) {
+  return new Promise((resolve, reject) => {
+    pool.query("select * from filmek f, kedvenckapcsolas k, user u WHERE(f.FilmID=k.FilmID and k.UserID=u.id) and u.id = ?", [user_id], (error, elements) => {
+      if (error) {
+        return reject(error);
+      }
+      
+      return resolve(elements);
+    });
   });
 }
 async function InsertUser(username, password, name, email) {
@@ -292,4 +314,6 @@ module.exports = {
   SelectSzinesz:SelectSzinesz,
   SearchFilmAll:SearchFilmAll,
   SelectFavorite:SelectFavorite,
+  SelectUserFavorite:SelectUserFavorite,
+  SelectFilmekIMDB:SelectFilmekIMDB
 };

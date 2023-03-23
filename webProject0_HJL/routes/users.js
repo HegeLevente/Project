@@ -7,7 +7,7 @@ var path = require("path"); // útvonalhoz
 var verify = require("../middleware/verfyModule");
 var Db = require("../db/dboperation");
 const session = require("express-session");
-
+var prevpage ="";
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, past.join(__dirname, "../public/Userprofile"));
@@ -23,6 +23,11 @@ router.get("/", function (req, res, next) {
   res.send("respond with a resource");
 });
 
+router.get ("/kedvencek", async function (req, res, next)
+{
+  const resultElements = await Db.SelectUserFavorite(req.session.user_id)
+  res.render("kedvencek", {list:resultElements, session : req.session})
+})
 router.get("/login", async function (req, res, next) {
   try {
     res.render("login", { session: req.session });
@@ -109,6 +114,7 @@ router.post("/reg", async function (req, res, next) {
 
   
 });
+
 router.get("/logout", function (req, res, next) {
   req.session.destroy();
   res.redirect("/filmek");

@@ -6,10 +6,11 @@ var path = require("path"); // útvonalhoz
 var Db = require("../db/dboperation");
 var verify = require("../middleware/verfyModule");
 /* GET home page. */
- const prevgage =""
+ const prevpage =""
 router.get("/", async (req, res, next) => {
   const resultElements = await Db.SelectFilmekIndex();
-  res.render("index.ejs", { list: resultElements, session: req.session });
+  const imdb = await Db.SelectFilmekIMDB();
+  res.render("index.ejs", { list: resultElements, session: req.session, imdb:imdb });
 });
 
 router.get("/filmek", async (req, res, next) => {
@@ -90,11 +91,12 @@ router.post("/kereses", async (req, res, next) => {
 router.post("/addFavorite", async (req, res, next) => {
   try {
     if (req.session.user_id) {
-      console.log(req.params.id)
-      const favorite = await Db.InsertFavorite(req.session.user_id, req.params.id);
+      console.log(req.body.filmId)
+      await Db.InsertFavorite(req.session.user_id, req.body.filmId);
       res.redirect(req.session.previousURL)
     } else {
-      res.render("login");
+      req.session.previousURL = ("/film/" + req.body.filmID)
+      res.redirect("/user/login");
     }
   } catch (e) {
     console.log(e);
@@ -104,10 +106,12 @@ router.post("/addFavorite", async (req, res, next) => {
 router.post("/removeFavorite", async (req, res, next) => {
   try {
     if (req.session.user_id) {
-      const favorite = await Db.DeleteFavorite(req.session.user_id, req.body.FilmID);
-      res.redirect(req.session.previousURL)
+      await Db.DeleteFavorite(req.session.user_id, req.body.filmId);
+      favorite="";
+      res.redirect("/film/"+req.body.filmId)
     } else {
-      res.render("login");
+      req.session.previousURL = ("/film/"+req.body.filmId);
+      res.redirect("/user/login");
     }
   } catch (e) {
     console.log(e);
@@ -116,23 +120,27 @@ router.post("/removeFavorite", async (req, res, next) => {
 });
 router.get("/film/:id", async (req, res, next) => {
   try {
-    req.session.previousURL= "/film/"+req.params.id;
-    favorite=false;
+    req.session.previousURL="/film/"+req.params.id;
     const movieId = req.params.id;
-    const chechFav = await Db.SelectFavorite(req.session.id, movieId);
-    if (chechFav.length>0){
-      favorite=true
-    }
+    favorite=false;
+    const checkfavourite = await Db.SelectFavorite(req.session.user_id, movieId);
+    console.log(checkfavourite[0])
     const resultElements = await Db.SelectOne(movieId);
     const szineszkapcsolo = await Db.SelectActors(movieId);
     const kategoriakapcsolo = await Db.SelectCategory(movieId);
+    if (checkfavourite.length>0)
+    {
+      favorite=true;
+    }
     res.render("adatlap.ejs", {
       favorite: favorite,
       list: resultElements,
       szineszek: szineszkapcsolo,
       kategoria: kategoriakapcsolo,
       session: req.session,
+      
     });
+    console.log(favorite);
   } catch (e) {
     console.log(e); // console.log - Hiba esetén.
     res.sendStatus(500);

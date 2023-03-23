@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="/css/main.css" />
     <link rel="stylesheet" href="/css/navbar.css" />
     <link rel="stylesheet" href="/css/Adatlap.css" />
-
+    <script src="https://kit.fontawesome.com/9b606b0459.js" crossorigin="anonymous"></script>
     <title>Retro Film Kincsek</title>
   </head>
   <body>
@@ -28,16 +28,17 @@
           <div class="col-12 col-xl-11">
             <div class="card card--details card--series">
               <div class="card__cover">
-                <img src="/Filmek/<%=list[0].EredetiCim%>/Image_1.jpg" alt="" />
+                <img src="/Filmek/<%=list[0].EredetiCim%>/Image_1.jpg" alt="" />s
               </div>
 
               <div class="card__content">
-                <% if (locals.session.user_id>0){ %> <% if (favorite) { %>
+                <% if (locals.session.user_id>0){ %>
+                   <% if (favorite) { %>
                 <div class="button-div">
-                  <form action="/removeFavorite" method="post">
-                    <input type="submit" value="Kivétel a kedvencek közül" />
-                    <input
-                      type="text"
+                  <form action="/removeFavorite" method="post" id="formRemove"> 
+                    <a onclick="document.getElementById('formRemove').submit();"><i class="fa-solid fa-star fa-xl" style="color: #ffff00;"></i></a>
+                    <input                     
+                    type="text"
                       value="<%= list[0].FilmID %>"
                       name="filmId"
                       style="display: none"
@@ -46,8 +47,8 @@
                 </div>
                 <% } else { %>
                 <div class="button-div">
-                  <form action="/addFavorite" method="post">
-                    <input type="submit" value="Kedvencekhez adás" />
+                  <form action="/addFavorite" method="post"  id="formAdd">
+                    <a onclick="document.getElementById('formAdd').submit();"><i class="fa-regular fa-star fa-xl" style="color: #ffff00;"></i></a>
                     <input
                       type="text"
                       value="<%= list[0].FilmID %>"
@@ -56,7 +57,14 @@
                     />
                   </form>
                 </div>
-                <% }; %> <% }; %>
+                <% }; %>
+                 <% } else { %>
+                  <div class="button-div">
+                    <form action="/user/login" method="get"  id="formAdd">
+                      <a onclick="document.getElementById('formAdd').submit();"><i class="fa-regular fa-star fa-xl" style="color: #ffff00;"></i></a>
+                    </form>
+                  </div>
+                  <% }; %>
                 <ul class="card__meta">
                   <li><span>Eredeti cím:</span> <%=list[0].EredetiCim%></li>
                   <li>

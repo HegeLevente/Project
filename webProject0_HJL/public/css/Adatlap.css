@@ -290,4 +290,13 @@
         }
   }
   
+  .favorite{
+    font-size: 50px;
+    color: yellow;
   
+  }
+  .icon::before {
+    display: inline-block;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+  }
