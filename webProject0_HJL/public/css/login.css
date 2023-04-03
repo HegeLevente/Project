@@ -37,8 +37,18 @@
 	border-radius: 4px;
 	cursor: pointer;
 	font-weight: bold;
+	transition: all .4s ease-in-out;
   }
   
   .login-container input[type="submit"]:hover {
 	background-color: rgb(131, 23, 131);
+  }
+  .regLink{
+	font-style: italic;
+	color: yellow;
+	transition: all .4s ease-in-out;
+  }
+  .regLink:hover{
+	color: rgb(131, 23, 131);
+	text-decoration: none;
   }

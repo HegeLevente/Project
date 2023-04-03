@@ -20,26 +20,36 @@
         <input type="text" placeholder="Eredeti Címe" name="EredetiCim">
         <input type="number" min="1927" max="1999" placeholder="Év" name="Ev">
         <input type="text" placeholder="Rendező" name="Rendezo">
-        <select name="Kategoria">
-          <option selected="true"></option>
-          <%- include('category.ejs')%></select>
-          <input class="form-control" list="datalistOptions" id="exampleDataList" name="Szinesz" placeholder="Szinesz" oninput="fillData(this.value);">
-          <datalist id="datalistOptions">
+          <input class="form-control" list="datalistOptions" id="categoryDataList" name="Ketegoria" placeholder="Kategória" oninput="fillCategoryData(this.value);">
+          <datalist id="categoryListOptions">
+          </datalist>
+          <input class="form-control" list="datalistOptions" id="actorDataList" name="Szinesz" placeholder="Szinesz" oninput="fillActorData(this.value);">
+          <datalist id="actorListOptions">
           </datalist>
         <input type="submit" value="Szűrés">
       </form>
     </div>
     <script>
-      function fillData(name){
-      const listData = document.getElementById("datalistOptions");
+      function fillActorData(name){
+      const actorListData = document.getElementById("actorListOptions");
       url='/getActor/'+name;
       fetch(url,{method: 'GET'})
       .then(response => response.text())
-      .then( lista =>{
-      console.log('OK');
-      listData.innerHTML=lista;
+      .then( actorLista =>{
+      actorListData.innerHTML=actorLista;
       });
       }
       </script>
+      <script>
+        function fillCategoryData(name){
+        const categoryListData = document.getElementById("categoryListOptions");
+        url='/getCategory/'+name;
+        fetch(url,{method: 'GET'})
+        .then(response => response.text())
+        .then( categoryLista =>{
+        categoryListData.innerHTML=categoryLista;
+        });
+        }
+        </script>
   </body>
 </html>
