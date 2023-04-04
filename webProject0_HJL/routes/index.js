@@ -35,10 +35,38 @@ router.get("/filmek/:page", async (req, res, next) => {
     res.sendStatus(500);
   }
 });
+router.get("/szinesz/:nev", async (req, res, next) => {
+  try {
+    szineszNeve = req.params.nev.replace("+"," ");
+    const resultElements = await Db.SelectSzineszFilm(szineszNeve);
+    res.render("actor.ejs", { list: resultElements,szinesz:szineszNeve, session: req.session });
+  } catch (e) {
+    console.log(e); // console.log - Hiba esetén.
+    res.sendStatus(500);
+  }
+});
+router.get("/rendezo/:nev", async (req, res, next) => {
+  try {
+    rendezoNeve = req.params.nev.replace("+"," ");
+    const resultElements = await Db.SelectRendezoFilm(rendezoNeve);
+    res.render("rendezo.ejs", { list: resultElements,rendezo:rendezoNeve, session: req.session });
+  } catch (e) {
+    console.log(e); // console.log - Hiba esetén.
+    res.sendStatus(500);
+  }
+});
+router.get("/kategoria/:nev", async (req, res, next) => {
+  try {
+    kategoriaNeve = req.params.nev;
+    const resultElements = await Db.SelectKategoriaFilm(kategoriaNeve);
+    res.render("kategoria.ejs", { list: resultElements,kategoria:kategoriaNeve, session: req.session });
+  } catch (e) {
+    console.log(e); // console.log - Hiba esetén.
+    res.sendStatus(500);
+  }
+});
 router.get("/szures", async (req, res, next) => {
   try {
-    //const category = await Db.SelectKategoria();
-    /*const actor = await Db.SelectSzinesz(nev);*/
     res.render("szures.ejs", { session: req.session });
   } catch (e) {
     console.log(e); // console.log - Hiba esetén.
@@ -49,20 +77,20 @@ router.get("/getActor/:nev", async (req, res, next) => {
   try {
     nev = req.params.nev;
     const actor = await Db.SelectSzinesz(nev);
-    res.render("actor.ejs", { session: req.session, actor: actor });
+    res.render("actorlist.ejs", { list:actor});
   } catch (e) {
     console.log(e); // console.log - Hiba esetén.
-    res.sendStatus(500);
+    res.sendStatus(e.sendStatus);
   }
 });
 router.get("/getCategory/:nev", async (req, res, next) => {
   try {
-    nev = req.params.nev;
-    const category = await Db.SelectKategoria(nev);
-    res.render("actor.ejs", { session: req.session, category: category });
+    kategoria = req.params.nev;
+    const category = await Db.SelectKategoria(kategoria);
+    res.render("categorylist.ejs", { list:category});
   } catch (e) {
     console.log(e); // console.log - Hiba esetén.
-    res.sendStatus(500);
+    res.sendStatus(e.sendStatus);
   }
 });
 router.post("/szures", async (req, res, next) => {

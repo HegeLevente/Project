@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Registration Form</title>
+    <title>Retro Film Kincsek</title>
     <link rel="stylesheet" href="/css/bootstrap-grid.min.css" />
     <link rel="stylesheet" href="/css/bootstrap-reboot.min.css" />
     <link rel="stylesheet" href="/css/bootstrap.min.css" />
     <script src="/js/bootstrap.bundle.min.js"></script>
 
     <link rel="stylesheet" href="/css/main.css" />
-    <link rel="stylesheet" href="/css/szures.css">
+    <link rel="stylesheet" href="/css/szures.css" />
     <link rel="stylesheet" href="/css/navbar.css" />
   </head>
   <body>
@@ -16,40 +16,52 @@
     <div class="szures-container">
       <form action="/szures" method="post" class="input">
         <h1>Keresés</h1>
-        <input type="text" placeholder="Magyar Címe" name="MagyarCim">
-        <input type="text" placeholder="Eredeti Címe" name="EredetiCim">
-        <input type="number" min="1927" max="1999" placeholder="Év" name="Ev">
-        <input type="text" placeholder="Rendező" name="Rendezo">
-          <input class="form-control" list="datalistOptions" id="categoryDataList" name="Ketegoria" placeholder="Kategória" oninput="fillCategoryData(this.value);">
-          <datalist id="categoryListOptions">
-          </datalist>
-          <input class="form-control" list="datalistOptions" id="actorDataList" name="Szinesz" placeholder="Szinesz" oninput="fillActorData(this.value);">
-          <datalist id="actorListOptions">
-          </datalist>
-        <input type="submit" value="Szűrés">
+        <input type="text" placeholder="Magyar Címe" name="MagyarCim" />
+        <input type="text" placeholder="Eredeti Címe" name="EredetiCim" />
+        <input type="number" min="1927" max="1999" placeholder="Év" name="Ev" />
+        <input type="text" placeholder="Rendező" name="Rendezo" />
+        <input
+          class="form-control"
+          list="categoryListOptions"
+          id="categoryDataList"
+          name="Ketegoria"
+          placeholder="Kategória"
+          oninput="fillCategoryData(this.value);"
+        />
+        <datalist id="categoryListOptions"> </datalist>
+        <input
+          class="form-control"
+          list="actorListOptions"
+          id="actorDataList"
+          name="Szinesz"
+          placeholder="Szinesz"
+          oninput="fillActorData(this.value);"
+        />
+        <datalist id="actorListOptions"> </datalist>
+        <input type="submit" value="Szűrés" />
       </form>
     </div>
     <script>
-      function fillActorData(name){
-      const actorListData = document.getElementById("actorListOptions");
-      url='/getActor/'+name;
-      fetch(url,{method: 'GET'})
-      .then(response => response.text())
-      .then( actorLista =>{
-      actorListData.innerHTML=actorLista;
-      });
+      async function fillActorData(name) {
+        const actorListData = document.getElementById("actorListOptions");
+        url = "/getActor/" + name;
+        await fetch(url, { method: "GET" })
+          .then((response) => response.text())
+          .then((lista) => {
+            actorListData.innerHTML = lista;
+          });
       }
-      </script>
-      <script>
-        function fillCategoryData(name){
+    </script>
+    <script>
+      function fillCategoryData(name) {
         const categoryListData = document.getElementById("categoryListOptions");
-        url='/getCategory/'+name;
-        fetch(url,{method: 'GET'})
-        .then(response => response.text())
-        .then( categoryLista =>{
-        categoryListData.innerHTML=categoryLista;
-        });
-        }
-        </script>
+        url = "/getCategory/" + name;
+        fetch(url, { method: "GET" })
+          .then((response) => response.text())
+          .then((categoryLista) => {
+            categoryListData.innerHTML = categoryLista;
+          });
+      }
+    </script>
   </body>
 </html>

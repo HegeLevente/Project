@@ -40,9 +40,52 @@ async function SelectFilmekIMDB() {
   });
 }; 
 /*Szures*/
-async function SelectKategoria() {
+async function SelectSzineszFilm(szineszNeve) {
   return new Promise((resolve, reject) => {
-    pool.query('SELECT k.KategNev AS kategoria from kategoria k', (error, elements) => {
+    pool.query(
+      "select f.* from filmek f, szinesz sz,szineszkapcsolo szk WHERE(f.FilmID=szk.Film_id and szk.SzineszID=sz.id) and sz.Szinesz = ?",szineszNeve,
+      
+      (error, elements) => {
+        if (error) {
+          return reject(error);
+        }
+        return resolve(elements);
+      }
+    );
+  });
+}
+async function SelectRendezoFilm(rendezoNeve) {
+  return new Promise((resolve, reject) => {
+    pool.query(
+      "select * from egesz where Rendezo LIKE  ?",rendezoNeve,
+      
+      (error, elements) => {
+        if (error) {
+          return reject(error);
+        }
+        return resolve(elements);
+      }
+    );
+  });
+}
+async function SelectKategoriaFilm(KategoriaNeve) {
+  return new Promise((resolve, reject) => {
+    pool.query(
+      "select f.* from filmek f, kategoria k,kategkapcsolo kk WHERE(f.FilmID=kk.FilmID and kk.KategID=k.KategId) and k.KategNev = ?",KategoriaNeve,
+      
+      (error, elements) => {
+        if (error) {
+          return reject(error);
+        }
+        return resolve(elements);
+      }
+    );
+  });
+}
+async function SelectKategoria(kateg) {
+  return new Promise((resolve, reject) => {
+    kateg='%'+kateg+'%'
+    pool.query('SELECT k.KategNev AS kategoria from kategoria k where k.Kategnev LIKE ?',kateg, (error, elements) => {
       if (error) {
         return reject(error);
       }
@@ -50,9 +93,10 @@ async function SelectKategoria() {
     });
   });
 }
-async function SelectSzinesz() {
+async function SelectSzinesz  (nev) {
   return new Promise((resolve, reject) => {
-    pool.query('SELECT sz.Szinesz AS szinesz from szinesz sz', (error, elements) => {
+    nev='%'+nev+'%'
+    pool.query(`SELECT sz.Szinesz AS szinesz from szinesz sz where sz.Szinesz LIKE ?`,nev, (error, elements) => {
       if (error) {
         return reject(error);
       }
@@ -315,5 +359,8 @@ module.exports = {
   SearchFilmAll:SearchFilmAll,
   SelectFavorite:SelectFavorite,
   SelectUserFavorite:SelectUserFavorite,
-  SelectFilmekIMDB:SelectFilmekIMDB
+  SelectFilmekIMDB:SelectFilmekIMDB,
+  SelectSzineszFilm:SelectSzineszFilm,
+  SelectRendezoFilm: SelectRendezoFilm,
+  SelectKategoriaFilm:SelectKategoriaFilm
 };

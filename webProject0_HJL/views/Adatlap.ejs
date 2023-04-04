@@ -71,23 +71,23 @@
                     <span>Műfaj:</span>
                     <%kategoria.forEach((item,index) => {%>
                     <%if(index!=kategoria.length-1){%>
-                    <a href="#"><%=item.kategoria%>,</a>
+                    <a href="../kategoria/<%=item.kategoria%>"><%=item.kategoria%>,</a>
                     <%}else{%>
-                    <a href="#"><%=item.kategoria%></a>
+                    <a href="../kategoria/<%=item.kategoria%>"><%=item.kategoria%></a>
                     <%}%> <%});%>
                   </li>
                   <li><span>Kiadás év:</span> <%=list[0].Ev%></li>
                   <li><span>Hossz:</span> <%=list[0].hossz%></li>
                   <li>
-                    <span>Rendező:</span> <a href="#"><%=list[0].Rendezo%></a>
+                    <span>Rendező:</span> <a href="../rendezo/<%=list[0].Rendezo.replace(' ','+')%>"><%=list[0].Rendezo%></a>
                   </li>
                   <li>
                     <span>Színészek:</span>
                     <%szineszek.forEach((item,index) => {%>
                     <%if(index!=szineszek.length-1){%>
-                    <a href="#"><%=item.szinesz%>,</a>
+                    <a href="../szinesz/<%=item.szinesz.replace(' ','+')%>"><%=item.szinesz%>,</a>
                     <%}else{%>
-                    <a href="#"><%=item.szinesz%></a>
+                    <a href="../szinesz/<%=item.szinesz.replace(' ','+')%>"><%=item.szinesz%></a>
                     <%}%> <%});%>
                   </li>
                 </ul>
