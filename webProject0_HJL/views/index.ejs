@@ -74,6 +74,15 @@
       prevEl: '.slider1 .swiper-button-prev',
     },
   });
+  }else if(bodyWidth<1600){
+    var swiper2 = new Swiper('.slider1', {
+      slidesPerView: 7,
+      spaceBetween: 20,
+      navigation: {
+        nextEl: '.slider1 .swiper-button-next',
+        prevEl: '.slider1 .swiper-button-prev',
+      },
+    });
   }else{
   swiper2 = new Swiper('.slider1', {
     slidesPerView: 9,
