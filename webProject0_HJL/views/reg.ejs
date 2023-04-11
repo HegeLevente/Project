@@ -8,38 +8,48 @@
     <script src="/js/bootstrap.bundle.min.js"></script>
 
     <link rel="stylesheet" href="/css/main.css" />
-    <link rel="stylesheet" href="/css/reg.css">
+    <link rel="stylesheet" href="/css/reg.css" />
     <link rel="stylesheet" href="/css/navbar.css" />
   </head>
   <body>
     <%- include('navbar.ejs') %>
     <div class="registration-container">
-      <form action="/user/reg" method="post" class="input" onsubmit="return passCheck()">
+      <form
+        action="/user/reg"
+        method="post"
+        class="input"
+        onsubmit="return passCheck()"
+      >
         <h1>Regisztráció</h1>
-        <input type="text" placeholder="Teljes Név" name="fullname">
-        <input type="text" placeholder="Felhasználónév" name="username">
-        <input type="email" placeholder="Email-cím" name="email">
-        <input type="password" placeholder="Jelszó" name="password">
-        <input type="password" placeholder="Jelszó megerősítése" name="passwordConfirm">
-        <input type="submit" value="Regisztrálok">
+        <input type="text" placeholder="Teljes Név" name="fullname" />
+        <input type="text" placeholder="Felhasználónév" name="username" />
+        <input type="email" placeholder="Email-cím" name="email" />
+        <input type="password" placeholder="Jelszó" name="password" />
+        <input
+          type="password"
+          placeholder="Jelszó megerősítése"
+          name="passwordConfirm"
+        />
+        <input type="submit" value="Regisztrálok" />
       </form>
     </div>
     <script>
-      function passCheck(){
-      var pass = document.getElementsByName("password")
-      var confpass= document.getElementsByName("passwordConfirm")
-      if(pass.length>8){
-      if (pass==confpass){
-        return true
-      }else{
-        console.log("belép")
-        alert("A jelszók nem egyeznek meg")
-        return false
-      }}else{
-        alert("A jelszónak minimum 8 karater hosszúnak kell lennie")
-        return false
-      }
-    }
+      function passCheck() {
+        console.log("belép");
+        var pass = document.getElementsByName("password");
+        var confpass = document.getElementsByName("passwordConfirm");
+        if (pass.length>8){
+          if (pass == confpass) {
+            return true;
+          } else{
+            alert("A jelszók nem egyeznek meg");
+            return false;
+          }   
+        }   else{
+          alert("A jelszónak legalább 8 karakternek kell lennie");
+        }  
+      } 
+      
     </script>
-   </body>
+  </body>
 </html>
