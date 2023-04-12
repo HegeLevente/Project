@@ -69,14 +69,14 @@ router.post("/profil/valtoztat", async function (req, res, next) {
   let password = req.body.password;
   let email = req.body.email;
   let neve = req.body.fullname;
-  let Profilkep = req.body.Profilkep;
-  const resultElements = await Db.UpdateUser(username, password, neve, email);
+  let user_id = req.session.user_id; 
+  const resultElements = await Db.UpdateUser(user_id,username, password, neve, email);
 
-  if (resultElements.length == 0) res.redirect("/profil/valtoztat");
+  if (resultElements.length == 0) res.redirect("/user/profil/valtoztat");
   else {
     req.session.user_id = resultElements.insertId;
-    req.session.name = username;
-    res.redirect("/profil");
+    const resultElements = await Db.SelectOneUser(user_id);
+    res.render("profil");
   }
 });
 router.post("/login", async function (req, res, next) {
@@ -99,8 +99,6 @@ router.post("/reg", async function (req, res, next) {
   let password = req.body.password;
   let email = req.body.email;
   let neve = req.body.fullname;
-  let passwrodConf = req.body.passwordConfirm;
-  if (passwrodConf === password) {
     const resultElements = await Db.InsertUser(username, password, neve, email);
     if (resultElements.length == 0) res.redirect("/reg");
     else {
@@ -110,9 +108,6 @@ router.post("/reg", async function (req, res, next) {
       req.session.Jogosultsag = login[0].Jogosultsag
       res.redirect("/filmek");
     }
-  }
-
-  
 });
 
 router.get("/logout", function (req, res, next) {

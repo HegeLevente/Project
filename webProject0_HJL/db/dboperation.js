@@ -273,27 +273,34 @@ async function InsertUser(username, password, name, email) {
     );
   });
 }
-async function UpdateUser(id,Username,Password,Neve,Email,Profilkep) {
+async function UpdateUser(id,Username,Password,Neve,Email) {
   return new Promise((resolve, reject) => {
-    sqlPw='';
-    sqlImg='';
-    par=[Username,Neve,Email]
 
-
-    if (Password && Passsword.length>2){
-        sqlPw=',password=titkosit(?)'
+    sql ="Update user set ";
+    par=[]
+    if (Username){
+      sql=sql+"Username=?"
+      par.push(Username)
+    }
+    if(Neve)
+    {
+      if(Username){sql=sql+",";console.log("Neve")}
+      sql=sql+"Neve=?"
+      par.push(Neve)
+    }
+    if(Email)
+    {
+      if(Username || Neve){sql=sql+",";console.log("Email")}
+      sql=sql+"Email=?"
+      par.push(Email)
+    }
+    if (password){
+      if(Username || Neve || Email){sql=sql+",";console.log("password")}
+        sqlPw='password=titkosit(?)'
         par.push(Password)
     }
-    if (Profilkep && Profilkep.length>0){
-      sqlPw=',password=titkosit(?)'
-      par.push(Password)
-     }
      sqlWhere=' Where id=?';
      par.push(id);
-
-
-     sql ='Update user set Username=?,Neve?,Email=?'+sqlPw +sqlImg+sqlWhere;
-
       pool.query(sql,par,(error,elements)=>{
         if(error){
           return reject(error);
@@ -339,7 +346,7 @@ async function SelectOneUser(user_id) {
     });
   });
 }
-//  külső név : belső név
+
 module.exports = {
   SelectOneUser: SelectOneUser,
   SelectUser: SelectUser,

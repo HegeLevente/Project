@@ -65,6 +65,7 @@
                     </form>
                   </div>
                   <% }; %>
+                
                 <ul class="card__meta">
                   <li><span>Eredeti cím:</span> <%=list[0].EredetiCim%></li>
                   <li>
@@ -78,6 +79,8 @@
                   </li>
                   <li><span>Kiadás év:</span> <%=list[0].Ev%></li>
                   <li><span>Hossz:</span> <%=list[0].hossz%></li>
+                  <li><span>Korhatár:</span> <%=list[0].Besorolas%></li>
+                  <li><span>IMDB:</span> <%=list[0].IMDB%></li>
                   <li>
                     <span>Rendező:</span> <a href="../rendezo/<%=list[0].Rendezo.replace(' ','+')%>"><%=list[0].Rendezo%></a>
                   </li>

@@ -15,7 +15,7 @@
   <body>
     <%- include('navbar.ejs') %>
     <div class="valtoztat-container">
-      <form action="/kereses/szures" method="post" class="input">
+      <form action="/user/profil/valtoztat" method="post" class="input" onsubmit="passCheck()">
         <h1>Adatok Változtatása</h1>
         <input type="text" placeholder="Full Name" name="fullname">
         <input type="text" placeholder="Username" name="username">
@@ -25,4 +25,25 @@
         <input type="submit" value="Submit">
       </form>
     </div>
+    <script>
+      function passCheck() {
+  var pass = document.getElementsByName("password");
+  if (pass.length > 0) {
+    var confpass = document.getElementsByName("passwordConfirm");
+    if (pass[0].value.length > 8) {
+      if (pass[0].value == confpass[0].value) {
+        return true;
+      } else {
+        alert("A jelszók nem egyeznek meg");
+        return false;
+      }
+    } else {
+      alert("A jelszónak minimum 8 karakter hosszúnak kell lennie");
+      return false;
+    }
+  } else {
+    return true;
+  }
+}
+    </script>
 </html>
