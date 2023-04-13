@@ -106,7 +106,11 @@ async function SelectSzinesz  (nev) {
 }
 async function SearchFilm(MagyarCim,Rendezo,Ev,EredetiCim,Kategoria,Szinesz) {
   return new Promise((resolve, reject) => {
-    sql="Select * from egesz where"
+    sql="Select * from egesz"
+    sqlWhere=" where"
+    if(MagyarCim || Rendezo || Ev || EredetiCim || Kategoria || Szinesz){
+      sql=sql+sqlWhere
+    }
     par =[];
     if (MagyarCim){
       sql=sql+" MagyarCim LIKE ?"
