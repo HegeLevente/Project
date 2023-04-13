@@ -35,6 +35,7 @@
     </div>
     <script>
       function passCheck() {
+<<<<<<< HEAD
         
         var pass = document.getElementsByName("password");
         var confpass = document.getElementsByName("passwordConfirm");
@@ -50,6 +51,23 @@
           return false;
         }
       }
+=======
+        console.log("belép");
+        var pass = document.getElementsByName("password");
+        var confpass = document.getElementsByName("passwordConfirm");
+        if (pass.length>8){
+          if (pass == confpass) {
+            return true;
+          } else{
+            alert("A jelszók nem egyeznek meg");
+            return false;
+          }   
+        }   else{
+          alert("A jelszónak legalább 8 karakternek kell lennie");
+        }  
+      } 
+      
+>>>>>>> bceae1a3ae01286b2893551026976fdc04283d5b
     </script>
   </body>
 </html>

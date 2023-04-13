@@ -106,11 +106,18 @@ async function SelectSzinesz(nev) {
 }
 async function SearchFilm(MagyarCim,Rendezo,Ev,EredetiCim,Kategoria,Szinesz) {
   return new Promise((resolve, reject) => {
+<<<<<<< HEAD
     sql="Select * from egesz"
     sqlWhere=" where"
     if(MagyarCim || Rendezo || Ev || EredetiCim || Kategoria || Szinesz){
       sql=sql+sqlWhere
     }
+=======
+    
+    if(MagyarCim|| Szinesz || Kategoria || Rendezo || Ev || EredetiCim){
+      sql="Select * from egesz where"
+    
+>>>>>>> bceae1a3ae01286b2893551026976fdc04283d5b
     par =[];
     if (MagyarCim){
       sql=sql+" MagyarCim LIKE ?"
@@ -146,6 +153,9 @@ async function SearchFilm(MagyarCim,Rendezo,Ev,EredetiCim,Kategoria,Szinesz) {
       EredetiCim = "%"+EredetiCim+"%";
       par.push(EredetiCim);
     }
+  }else{
+    sql="Select * from egesz"
+  }
       pool.query(sql,par,(error,elements)=>{
         console.log(sql)
         console.log(par)
