@@ -30,7 +30,8 @@ router.get ("/kedvencek", async function (req, res, next)
 })
 router.get("/login", async function (req, res, next) {
   try {
-    res.render("login", { session: req.session });
+    let hibas=false
+    res.render("login", { session: req.session, hibas:hibas  });
   } catch (e) {
     console.log(e); // console.log - Hiba esetén.
     res.sendStatus(500);
@@ -46,9 +47,10 @@ router.get("/reg", async function (req, res, next) {
 });
 router.get("/profil", async (req, res, next) => {
   try {
+    
     const user_id = req.session.user_id;
     const resultElements = await Db.SelectOneUser(user_id);
-    res.render("profil.ejs", { list: resultElements, session: req.session });
+    res.render("profil.ejs", { list: resultElements, session: req.session});
   } catch (e) {
     console.log(e); // console.log - Hiba esetén.
     res.sendStatus(500);
@@ -82,10 +84,10 @@ router.post("/profil/valtoztat", async function (req, res, next) {
 router.post("/login", async function (req, res, next) {
   let username = req.body.Username;
   let password = req.body.Password;
-
+  let hibas=true;
   const resultElements = await Db.VerifyUser(username, password);
 
-  if (resultElements.length == 0) res.send("Hibás belépés");
+  if (resultElements.length == 0) {res.render("login",{hibas:hibas, session: req.session} )}
   else {
     req.session.Jogosultsag = resultElements[0].Jogosultsag;
     req.session.user_id = resultElements[0].id;

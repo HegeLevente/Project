@@ -18,13 +18,18 @@
 </head>
 <body>
   <%- include('navbar.ejs') %>
+ 
     <div class="login-container">
         <h1>Bejelentkezés</h1>
         <form action="/user/login" method="post">
           <input type="text" placeholder="Felhasználónév" name="Username">
           <input type="password" placeholder="Jelszó" name="Password">
           <input type="submit" value="Bejelentkezés"><br>
+          <% if(hibas==true){  %>
+            <p class="hibas">Hibás felhasználónév vagy jelszó!</p>
+            <% } %>
           <a href="reg" class="regLink">Még nem regisztrált?</a>
+
         </form>
       </div>
 </body>

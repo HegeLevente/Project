@@ -93,7 +93,7 @@ async function SelectKategoria(kateg) {
     });
   });
 }
-async function SelectSzinesz  (nev) {
+async function SelectSzinesz(nev) {
   return new Promise((resolve, reject) => {
     nev='%'+nev+'%'
     pool.query(`SELECT sz.Szinesz AS szinesz from szinesz sz where sz.Szinesz LIKE ?`,nev, (error, elements) => {
