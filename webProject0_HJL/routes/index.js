@@ -161,7 +161,6 @@ router.get("/film/:id", async (req, res, next) => {
     const movieId = req.params.id;
     favorite=false;
     const checkfavourite = await Db.SelectFavorite(req.session.user_id, movieId);
-    console.log(checkfavourite[0])
     const resultElements = await Db.SelectOne(movieId);
     const szineszkapcsolo = await Db.SelectActors(movieId);
     const kategoriakapcsolo = await Db.SelectCategory(movieId);

@@ -21,7 +21,7 @@ async function SelectFilmek(pageNo) {
 async function SelectFilmekIndex() {
     return new Promise((resolve, reject) => {
         pool.query('select filmek.* from  filmek '+
-        'where Kezdolapon = true;', (error, elements) => {
+        'where Kezdolapon = 1;', (error, elements) => {
             if (error) {
                 return reject(error);
             }
@@ -106,18 +106,15 @@ async function SelectSzinesz(nev) {
 }
 async function SearchFilm(MagyarCim,Rendezo,Ev,EredetiCim,Kategoria,Szinesz) {
   return new Promise((resolve, reject) => {
-<<<<<<< HEAD
     sql="Select * from egesz"
     sqlWhere=" where"
     if(MagyarCim || Rendezo || Ev || EredetiCim || Kategoria || Szinesz){
       sql=sql+sqlWhere
     }
-=======
     
     if(MagyarCim|| Szinesz || Kategoria || Rendezo || Ev || EredetiCim){
       sql="Select * from egesz where"
     
->>>>>>> bceae1a3ae01286b2893551026976fdc04283d5b
     par =[];
     if (MagyarCim){
       sql=sql+" MagyarCim LIKE ?"
@@ -310,11 +307,13 @@ async function UpdateUser(id,Username,Password,Neve,Email) {
     }
     if (password){
       if(Username || Neve || Email){sql=sql+",";console.log("password")}
-        sqlPw='password=titkosit(?)'
+        sql=sql+'password=titkosit(?)'
         par.push(Password)
     }
-     sqlWhere=' Where id=?';
+     
+     sql=sql+' Where id=?'
      par.push(id);
+     console.log(sql)
       pool.query(sql,par,(error,elements)=>{
         if(error){
           return reject(error);

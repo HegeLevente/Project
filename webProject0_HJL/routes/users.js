@@ -71,8 +71,9 @@ router.post("/profil/valtoztat", async function (req, res, next) {
   let password = req.body.password;
   let email = req.body.email;
   let neve = req.body.fullname;
-  let user_id = req.session.user_id; 
-  const resultElements = await Db.UpdateUser(user_id,username, password, neve, email);
+  let id = req.session.user_id; 
+  console.log(id)
+  const resultElements = await Db.UpdateUser(id, username, password, neve, email);
 
   if (resultElements.length == 0) res.redirect("/user/profil/valtoztat");
   else {
@@ -84,17 +85,10 @@ router.post("/profil/valtoztat", async function (req, res, next) {
 router.post("/login", async function (req, res, next) {
   let username = req.body.Username;
   let password = req.body.Password;
-<<<<<<< HEAD
   let hibas=true;
   const resultElements = await Db.VerifyUser(username, password);
 
   if (resultElements.length == 0) {res.render("login",{hibas:hibas, session: req.session} )}
-=======
-  hibas=true;
-  const resultElements = await Db.VerifyUser(username, password);
-
-  if (resultElements.length == 0) res.redirect("/login", {hibas:hibas})
->>>>>>> bceae1a3ae01286b2893551026976fdc04283d5b
   else {
     req.session.Jogosultsag = resultElements[0].Jogosultsag;
     req.session.user_id = resultElements[0].id;
@@ -108,27 +102,15 @@ router.post("/reg", async function (req, res, next) {
   let password = req.body.password;
   let email = req.body.email;
   let neve = req.body.fullname;
-<<<<<<< HEAD
     const resultElements = await Db.InsertUser(username, password, neve, email);
     if (resultElements.length == 0) res.redirect("/reg");
     else {
-=======
-  const resultElements = await Db.InsertUser(username, password, neve, email);
-  if (resultElements.length == 0) res.redirect("/reg");
-  else {
->>>>>>> bceae1a3ae01286b2893551026976fdc04283d5b
       const login = await Db.VerifyUser(username, password);
       req.session.user_id = resultElements.insertId;
       req.session.name = username;
       req.session.Jogosultsag = login[0].Jogosultsag
       res.redirect("/filmek");
     }
-<<<<<<< HEAD
-=======
-  
-
-  
->>>>>>> bceae1a3ae01286b2893551026976fdc04283d5b
 });
 
 router.get("/logout", function (req, res, next) {
