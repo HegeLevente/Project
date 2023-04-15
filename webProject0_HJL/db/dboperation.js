@@ -286,7 +286,7 @@ async function InsertUser(username, password, name, email) {
 }
 async function UpdateUser(id,Username,Password,Neve,Email) {
   return new Promise((resolve, reject) => {
-
+    
     sql ="Update user set ";
     par=[]
     if (Username){
@@ -295,25 +295,24 @@ async function UpdateUser(id,Username,Password,Neve,Email) {
     }
     if(Neve)
     {
-      if(Username){sql=sql+",";console.log("Neve")}
+      if(Username){sql=sql+","}
       sql=sql+"Neve=?"
       par.push(Neve)
     }
     if(Email)
     {
-      if(Username || Neve){sql=sql+",";console.log("Email")}
+      if(Username || Neve){sql=sql+","}
       sql=sql+"Email=?"
       par.push(Email)
     }
-    if (password){
-      if(Username || Neve || Email){sql=sql+",";console.log("password")}
+    if (Password){
+      if(Username || Neve || Email){sql=sql+","}
         sql=sql+'password=titkosit(?)'
         par.push(Password)
     }
      
      sql=sql+' Where id=?'
      par.push(id);
-     console.log(sql)
       pool.query(sql,par,(error,elements)=>{
         if(error){
           return reject(error);
@@ -325,7 +324,7 @@ async function UpdateUser(id,Username,Password,Neve,Email) {
 async function VerifyUser(username, password) {
   return new Promise((resolve, reject) => {
     pool.query(
-      "SELECT * FROM filmek.user where Username=? and Password=titkosit(?)",
+      "SELECT * FROM user where Username=? and Password=titkosit(?)",
       [username, password],
       (error, elements) => {
         if (error) {

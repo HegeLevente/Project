@@ -21,35 +21,52 @@
         onsubmit="return passCheck()"
       >
         <h1>Regisztráció</h1>
-        <input type="text" placeholder="Teljes Név" name="fullname" />
-        <input type="text" placeholder="Felhasználónév" name="username" />
-        <input type="email" placeholder="Email-cím" name="email" />
-        <input type="password" placeholder="Jelszó" name="password" />
+        <input type="text" placeholder="Teljes Név" maxlength="20" name="fullname" />
+        <input type="text" placeholder="Felhasználónév" maxlength="20" name="username" />
+        <input type="email" placeholder="Email-cím" maxlength="20" name="email" />
+        <input type="password" placeholder="Jelszó" maxlength="30" name="password" />
         <input
           type="password"
           placeholder="Jelszó megerősítése"
           name="passwordConfirm"
+          maxlength="30"
         />
         <input type="submit" value="Regisztrálok" />
       </form>
     </div>
     <script>
-      function passCheck() {
-        
-        var pass = document.getElementsByName("password");
-        var confpass = document.getElementsByName("passwordConfirm");
-        if (pass.length > 8) {
-          if (pass == confpass) {
-            return true;
-          } else {
-      salert("A jelszók nem egyeznek meg");
-            return false;
-          }
-        } else {
-          alert("A jelszónak minimum 8 karater hosszúnak kell lennie");
-          return false;
-        }
-      }
+function passCheck() {
+  var pass = document.getElementsByName("password")[0].value;
+  var confpass = document.getElementsByName("passwordConfirm")[0].value;
+
+
+  if (pass === "") {
+    alert("A jelszó mező nem lehet üres.");
+    return false;
+  }
+
+
+  if (pass.length < 8) {
+    alert("A jelszónak minimum 8 karakter hosszúnak kell lennie.");
+    return false;
+  }
+
+
+  if (pass !== confpass) {
+    alert("A jelszók nem egyeznek meg.");
+    return false;
+  }
+
+
+  if (!/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/.test(pass)) {
+    alert("A jelszónak legalább egy kis- és nagybetűt, valamint számot is tartalmaznia kell.");
+    return false;
+  }
+
+ 
+  return true;
+}
+      
     </script>
   </body>
 </html>

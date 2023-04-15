@@ -6,8 +6,9 @@ var path = require("path"); // útvonalhoz
 var Db = require("../db/dboperation");
 var verify = require("../middleware/verfyModule");
 /* GET home page. */
- const prevpage =""
+
 router.get("/", async (req, res, next) => {
+  req.session.legutobbi="/"
   const resultElements = await Db.SelectFilmekIndex();
   const imdb = await Db.SelectFilmekIMDB();
   res.render("index.ejs", { list: resultElements, session: req.session, imdb:imdb });
@@ -27,6 +28,7 @@ router.get("/filmek/:page", async (req, res, next) => {
     if (pageNo < 1 || isNaN(pageNo)) {
       pageNo = 0;
     }
+    req.session.legutobbi="/filmek/";
     const resultElements = await Db.SelectFilmek(pageNo);
     //res.json(resultElements);
     res.render("card.ejs", { list: resultElements, session: req.session });
@@ -37,7 +39,9 @@ router.get("/filmek/:page", async (req, res, next) => {
 });
 router.get("/szinesz/:nev", async (req, res, next) => {
   try {
+    
     szineszNeve = req.params.nev.replace("+"," ");
+    req.session.legutobbi="/szinesz/"+szineszNeve;
     const resultElements = await Db.SelectSzineszFilm(szineszNeve);
     res.render("actor.ejs", { list: resultElements,szinesz:szineszNeve, session: req.session });
   } catch (e) {
@@ -48,6 +52,7 @@ router.get("/szinesz/:nev", async (req, res, next) => {
 router.get("/rendezo/:nev", async (req, res, next) => {
   try {
     rendezoNeve = req.params.nev.replace("+"," ");
+    req.session.legutobbi="/rendezo/"+rendezoNeve;
     const resultElements = await Db.SelectRendezoFilm(rendezoNeve);
     res.render("rendezo.ejs", { list: resultElements,rendezo:rendezoNeve, session: req.session });
   } catch (e) {
@@ -58,6 +63,7 @@ router.get("/rendezo/:nev", async (req, res, next) => {
 router.get("/kategoria/:nev", async (req, res, next) => {
   try {
     kategoriaNeve = req.params.nev;
+    req.session.legutobbi="/kategoria/"+kategoriaNeve
     const resultElements = await Db.SelectKategoriaFilm(kategoriaNeve);
     res.render("kategoria.ejs", { list: resultElements,kategoria:kategoriaNeve, session: req.session });
   } catch (e) {
@@ -101,6 +107,38 @@ router.post("/szures", async (req, res, next) => {
     EredetiCim = req.body.EredetiCim;
     Kategoria = req.body.Kategoria;
     Szinesz = req.body.Szinesz;
+    Kereses=""
+    megkapott=""
+    megkapottListaja=[];
+    if (MagyarCim){
+      megkapott=megkapott+"Magyar Cím: "
+      megkapottListaja.push(MagyarCim) 
+    }
+    if (Kategoria){
+      if (MagyarCim){megkapott=megkapott+"\t"}
+      megkapott=megkapott+"Kategória: "
+      megkapottListaja.push(Kategoria) 
+    }
+    if (Szinesz){
+      if (MagyarCim || Kategoria){megkapott=megkapott+"\t"}
+      megkapott=megkapott+"Színesz: "
+      ;megkapottListaja.push(Szinesz) 
+    }
+    if (Rendezo){
+      if (MagyarCim || Szinesz || Kategoria){megkapott=megkapott+"\t"}
+      megkapott=megkapott+"Rendező: "
+      megkapottListaja.push(Rendezo) 
+    }
+    if (Ev){
+      if (MagyarCim|| Szinesz || Kategoria || Rendezo){megkapott=megkapott+"\t"}
+      megkapott=megkapott+"Év: "
+      megkapottListaja.push(Ev) 
+    }
+    if (EredetiCim){
+      if (MagyarCim|| Szinesz || Kategoria || Rendezo || Ev){megkapott=megkapott+"\t"}
+      megkapott=megkapott+"Eredeti Cím: "
+      megkapottListaja.push(EredetiCim) 
+    }
     const resultElements = await Db.SearchFilm(
       MagyarCim,
       Rendezo,
@@ -109,7 +147,7 @@ router.post("/szures", async (req, res, next) => {
       Kategoria,
       Szinesz
     );
-    res.render("talalatok", { list: resultElements, session: req.session });
+    res.render("talalatok", { list: resultElements, session: req.session,megkapott1:megkapott, megkapottListaja:megkapottListaja, Kereses:Kereses });
   } catch (e) {
     console.log(e); // console.log - Hiba esetén.
     res.sendStatus(500);
@@ -119,7 +157,8 @@ router.post("/kereses", async (req, res, next) => {
   try {
     Kereses = req.body.Kereses;
     const resultElements = await Db.SearchFilmAll(Kereses);
-    res.render("talalatok", { list: resultElements, session: req.session });
+    req.session.legutobbi="/talaltok/"
+    res.render("talalatok", { list: resultElements, session: req.session, Kereses:Kereses });
   } catch (e) {
     console.log(e); // console.log - Hiba esetén.
     res.sendStatus(500);
@@ -128,11 +167,11 @@ router.post("/kereses", async (req, res, next) => {
 router.post("/addFavorite", async (req, res, next) => {
   try {
     if (req.session.user_id) {
-      console.log(req.body.filmId)
+      req.session.previousURL = ("/film/" + req.body.filmId)
       await Db.InsertFavorite(req.session.user_id, req.body.filmId);
       res.redirect(req.session.previousURL)
     } else {
-      req.session.previousURL = ("/film/" + req.body.filmID)
+      req.session.previousURL = ("/film/" + req.body.filmId)
       res.redirect("/user/login");
     }
   } catch (e) {
@@ -157,7 +196,6 @@ router.post("/removeFavorite", async (req, res, next) => {
 });
 router.get("/film/:id", async (req, res, next) => {
   try {
-    req.session.previousURL="/film/"+req.params.id;
     const movieId = req.params.id;
     favorite=false;
     const checkfavourite = await Db.SelectFavorite(req.session.user_id, movieId);
@@ -174,7 +212,7 @@ router.get("/film/:id", async (req, res, next) => {
       szineszek: szineszkapcsolo,
       kategoria: kategoriakapcsolo,
       session: req.session,
-      
+      legutobbi:req.session.legutobbi
     });
     console.log(favorite);
   } catch (e) {

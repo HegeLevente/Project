@@ -13,12 +13,20 @@
     <link rel="stylesheet" href="/css/navbar.css" />
     <link rel="stylesheet" href="/css/Card.css" />
     <link rel="stylesheet" href="/css/main.css"/>
+    <link rel="stylesheet" href="/css/kereses.css"/>
     <title>Retro Film Kincsek</title>
   </head>
 
   <body>
     <%- include('navbar.ejs') %>
-    <h1></h1>
+    <%if( Kereses==""){ %>
+    <div class="keresett"><%= megkapott%> <p class="megnev">
+      <% for(var i=0; i<megkapottListaja.length; i++) {%>
+       <%= megkapottListaja[i] %>,
+        <%}%></p></div>
+    <%}else{%>
+      <div class="keresett">Keresett kifejezés: <p class="megnev"><%= Kereses %></p></div>
+      <%}%>
     <div id="hely">
       <%- include('card.ejs') %>
     </div>

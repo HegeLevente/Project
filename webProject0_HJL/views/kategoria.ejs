@@ -13,11 +13,13 @@
     <link rel="stylesheet" href="/css/navbar.css" />
     <link rel="stylesheet" href="/css/Card.css" />
     <link rel="stylesheet" href="/css/main.css"/>
+    <link rel="stylesheet" href="/css/kereses.css"/>
     <title>Retro Film Kincsek</title>
   </head>
 
-  <body>
+  <body>   
     <%- include('navbar.ejs') %>
+    <div class="keresett">Keresett kategória: <p class="megnev"><%= kategoria %></p></div>
     <div class="container">
         <div class="row row--grid">
             <% list.forEach(function(item,index) { %>

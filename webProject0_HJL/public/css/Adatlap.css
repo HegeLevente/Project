@@ -300,3 +300,13 @@
     text-rendering: auto;
     -webkit-font-smoothing: antialiased;
   }
+  .vissza{
+    color: yellow;
+    float: right;
+    background: none;
+    border: none;
+  }
+  .vissza:hover{
+    color: rgb(185, 31, 185);
+    text-decoration: none;
+  }

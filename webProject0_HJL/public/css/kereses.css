@@ -1,0 +1,18 @@
+.keresett{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #333;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px #bbb;
+    color: white;
+    width: 500px;
+    margin: auto;
+    margin-bottom: 10px;
+}
+.megnev{
+    color:yellow;
+    font-size: larger;
+}

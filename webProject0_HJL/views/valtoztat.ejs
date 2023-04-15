@@ -17,33 +17,35 @@
     <div class="valtoztat-container">
       <form action="/user/profil/valtoztat" method="post" class="input" onsubmit="passCheck()">
         <h1>Adatok Változtatása</h1>
-        <input type="text" placeholder="Full Name" name="fullname">
-        <input type="text" placeholder="Username" name="username">
-        <input type="email" placeholder="Email" name="email">
-        <input type="password" placeholder="Password" name="password">
-        <input type="password" placeholder="Confirm Password" name="passwordConfirm">
-        <input type="submit" value="Submit">
+        <input type="text" placeholder="Teljes Név" maxlength="20" name="fullname">
+        <input type="text" placeholder="Felhasználónév" maxlength="20" name="username">
+        <input type="email" placeholder="Email" maxlength="20" name="email">
+        <input type="password" placeholder="Jelszó" maxlength="30" name="password">
+        <input type="password" placeholder="Jelszó megerősítése" maxlength="30" name="passwordConfirm">
+        <input type="submit" value="Változtatás">
       </form>
     </div>
     <script>
-      function passCheck() {
-  var pass = document.getElementsByName("password");
-  if (pass.length > 0) {
-    var confpass = document.getElementsByName("passwordConfirm");
-    if (pass[0].value.length > 8) {
-      if (pass[0].value == confpass[0].value) {
-        return true;
-      } else {
-        alert("A jelszók nem egyeznek meg");
-        return false;
-      }
-    } else {
-      alert("A jelszónak minimum 8 karakter hosszúnak kell lennie");
-      return false;
-    }
-  } else {
-    return true;
-  }
-}
+      function passCheck()
+       {
+       var pass = document.getElementsByName("password");
+       
+       if (pass[0].value.trim() === "") {
+            return "";
+       }
+         var confpass = document.getElementsByName("passwordConfirm");
+         if (pass[0].value.length > 8) {
+          if (pass[0].value == confpass[0].value) {
+              return true;
+          } else {
+            alert("A jelszók nem egyeznek meg");
+            return false;
+           }
+        } else {
+           alert("A jelszónak minimum 8 karakter hosszúnak kell lennie");
+           return false;
+          }
+         } 
+      
     </script>
 </html>
