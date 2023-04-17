@@ -6,7 +6,7 @@ exports.allusers = async (req,res)=>{
 
     const resultElements = await Db.SelectUser(pageNo);
 
-    res.render('userlist',{list:resultElements})
+    res.render('userlist',{list:resultElements,  session: req.session})
     }catch(e){
         console.log(e);
         res.sendStatus(500);

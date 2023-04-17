@@ -21,9 +21,12 @@
     <%- include('navbar.ejs') %>
     <%if( Kereses==""){ %>
     <div class="keresett"><%= megkapott%> <p class="megnev">
-      <% for(var i=0; i<megkapottListaja.length; i++) {%>
-       <%= megkapottListaja[i] %>,
-        <%}%></p></div>
+      <% megkapottListaja.forEach((item,index) => {%>
+        <% if(index!=megkapottListaja.length-1){ %>
+           <%= item %>,
+       <%}else{%>
+           <%= item %>
+        <%}%> <%});%></p></div>
     <%}else{%>
       <div class="keresett">Keresett kifejezés: <p class="megnev"><%= Kereses %></p></div>
       <%}%>

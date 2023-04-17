@@ -17,9 +17,9 @@
     <div class="valtoztat-container">
       <form action="/user/profil/valtoztat" method="post" class="input" onsubmit="passCheck()">
         <h1>Adatok Változtatása</h1>
-        <input type="text" placeholder="Teljes Név" maxlength="20" name="fullname">
-        <input type="text" placeholder="Felhasználónév" maxlength="20" name="username">
-        <input type="email" placeholder="Email" maxlength="20" name="email">
+        <input type="text" placeholder="<%=list[0].Neve%>" maxlength="20" name="fullname">
+        <input type="text" placeholder="<%=list[0].Username%>" maxlength="20" name="username">
+        <input type="email" placeholder="<%=list[0].Email%>" maxlength="20" name="email">
         <input type="password" placeholder="Jelszó" maxlength="30" name="password">
         <input type="password" placeholder="Jelszó megerősítése" maxlength="30" name="passwordConfirm">
         <input type="submit" value="Változtatás">

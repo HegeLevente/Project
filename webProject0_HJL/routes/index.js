@@ -111,32 +111,32 @@ router.post("/szures", async (req, res, next) => {
     megkapott=""
     megkapottListaja=[];
     if (MagyarCim){
-      megkapott=megkapott+"Magyar Cím: "
+      megkapott=megkapott+"Magyar Cím"
       megkapottListaja.push(MagyarCim) 
     }
     if (Kategoria){
-      if (MagyarCim){megkapott=megkapott+"\t"}
-      megkapott=megkapott+"Kategória: "
+      if (MagyarCim){megkapott=megkapott+", "}
+      megkapott=megkapott+"Kategória"
       megkapottListaja.push(Kategoria) 
     }
     if (Szinesz){
-      if (MagyarCim || Kategoria){megkapott=megkapott+"\t"}
-      megkapott=megkapott+"Színesz: "
+      if (MagyarCim || Kategoria){megkapott=megkapott+", "}
+      megkapott=megkapott+"Színesz"
       ;megkapottListaja.push(Szinesz) 
     }
     if (Rendezo){
-      if (MagyarCim || Szinesz || Kategoria){megkapott=megkapott+"\t"}
-      megkapott=megkapott+"Rendező: "
+      if (MagyarCim || Szinesz || Kategoria){megkapott=megkapott+", "}
+      megkapott=megkapott+"Rendező"
       megkapottListaja.push(Rendezo) 
     }
     if (Ev){
-      if (MagyarCim|| Szinesz || Kategoria || Rendezo){megkapott=megkapott+"\t"}
-      megkapott=megkapott+"Év: "
+      if (MagyarCim|| Szinesz || Kategoria || Rendezo){megkapott=megkapott+", "}
+      megkapott=megkapott+"Év"
       megkapottListaja.push(Ev) 
     }
     if (EredetiCim){
-      if (MagyarCim|| Szinesz || Kategoria || Rendezo || Ev){megkapott=megkapott+"\t"}
-      megkapott=megkapott+"Eredeti Cím: "
+      if (MagyarCim|| Szinesz || Kategoria || Rendezo || Ev){megkapott=megkapott+", "}
+      megkapott=megkapott+"Eredeti Cím"
       megkapottListaja.push(EredetiCim) 
     }
     const resultElements = await Db.SearchFilm(
@@ -156,6 +156,9 @@ router.post("/szures", async (req, res, next) => {
 router.post("/kereses", async (req, res, next) => {
   try {
     Kereses = req.body.Kereses;
+    if(Kereses==""){
+      Kereses=" "
+    }
     const resultElements = await Db.SearchFilmAll(Kereses);
     req.session.legutobbi="/talaltok/"
     res.render("talalatok", { list: resultElements, session: req.session, Kereses:Kereses });
