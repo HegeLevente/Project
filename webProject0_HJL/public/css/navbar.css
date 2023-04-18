@@ -39,6 +39,7 @@
   box-shadow: 0px 0px 3px #bbb;
 }
 
+
 .btn-outline-success {
   border-radius: 25px;
   border: 2px solid #ccc;
@@ -116,3 +117,36 @@ img {
   vertical-align: middle;
   border-style: none;
 }
+@media (max-width:1100px) {
+  .navbar-collapse{
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    display: none;
+  }
+  .navbar-toggler{
+    background-color: rgb(131, 23, 131);
+  }
+  .nav-item{
+    width: 300px;
+    text-align: center;
+    margin: auto;
+  }
+  .form-inline{
+    display: flex;
+    justify-content: center;
+  }
+  .form-control{
+    width: 200px;
+    margin: auto;
+    margin-right: 0;
+  }
+  .btn-outline-success{
+    margin-right: auto;
+  }
+  .dropdown{
+    margin-left: 250px;
+  }
+}
+
+ 

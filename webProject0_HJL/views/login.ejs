@@ -19,10 +19,10 @@
 <body>
   <%- include('navbar.ejs') %>
     <div class="login-container">
-        <h1>Bejelentkezés</h1>
-        <form action="/user/login" method="post">
-          <input type="text" placeholder="Felhasználónév" name="Username">
-          <input type="password" placeholder="Jelszó" name="Password">
+        <form action="/user/login" method="post" class="input">
+          <h1>Bejelentkezés</h1>
+          <input type="text" placeholder="Felhasználónév" name="Username" maxlength="20">
+          <input type="password" placeholder="Jelszó" name="Password" maxlength="30">
           <input type="submit" value="Bejelentkezés"><br>
           <% if(hibas==true){  %>
             <p class="hibas">Hibás felhasználónév vagy jelszó!</p>
