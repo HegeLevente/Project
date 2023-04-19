@@ -104,6 +104,17 @@ async function SelectSzinesz(nev) {
     });
   });
 }
+async function SelectRendezo(nev) {
+  return new Promise((resolve, reject) => {
+    nev='%'+nev+'%'
+    pool.query(`SELECT r.RendezoNev AS rendezo from rendezo r where r.RendezoNev LIKE ?`,nev, (error, elements) => {
+      if (error) {
+        return reject(error);
+      }
+      return resolve(elements);
+    });
+  });
+}
 async function SearchFilm(MagyarCim,Rendezo,Ev,EredetiCim,Kategoria,Szinesz) {
   return new Promise((resolve, reject) => {
     sql="Select * from egesz"
@@ -381,5 +392,6 @@ module.exports = {
   SelectFilmekIMDB:SelectFilmekIMDB,
   SelectSzineszFilm:SelectSzineszFilm,
   SelectRendezoFilm: SelectRendezoFilm,
-  SelectKategoriaFilm:SelectKategoriaFilm
+  SelectKategoriaFilm:SelectKategoriaFilm,
+  SelectRendezo:SelectRendezo
 };

@@ -89,6 +89,17 @@ router.get("/getActor/:nev", async (req, res, next) => {
     res.sendStatus(e.sendStatus);
   }
 });
+router.get("/getDirector/:nev", async (req, res, next) => {
+  try {
+    nev = req.params.nev;
+    const director = await Db.SelectRendezo(nev);
+    console.log(director)
+    res.render("directorlist.ejs", { list:director});
+  } catch (e) {
+    console.log(e); // console.log - Hiba esetén.
+    res.sendStatus(e.sendStatus);
+  }
+});
 router.get("/getCategory/:nev", async (req, res, next) => {
   try {
     kategoria = req.params.nev;

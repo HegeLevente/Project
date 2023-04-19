@@ -19,7 +19,15 @@
         <input type="text" placeholder="Magyar Címe" name="MagyarCim" />
         <input type="text" placeholder="Eredeti Címe" name="EredetiCim" />
         <input type="number" min="1927" max="1999" placeholder="Év" name="Ev" />
-        <input type="text" placeholder="Rendező" name="Rendezo" />
+        <input
+          class="form-control"
+          list="directorListOptions"
+          id="directorDataList"
+          name="Rendezo"
+          placeholder="Rendező"
+          oninput="fillDirectorData(this.value);"
+        />
+        <datalist id="directorListOptions"> </datalist>
         <input
           class="form-control"
           list="categoryListOptions"
@@ -60,6 +68,18 @@
           .then((response) => response.text())
           .then((categoryLista) => {
             categoryListData.innerHTML = categoryLista;
+          });
+      }
+    </script>
+    <script>
+      function fillDirectorData(name) {
+        const directorListData = document.getElementById("directorListOptions");
+        
+        url = "/getDirector/" + name;
+        fetch(url, { method: "GET" })
+          .then((response) => response.text())
+          .then((directorLista) => {
+            directorListData.innerHTML = directorLista;
           });
       }
     </script>
