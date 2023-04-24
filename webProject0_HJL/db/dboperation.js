@@ -29,9 +29,9 @@ async function SelectFilmekIndex() {
         });
     });
 }; 
-async function SelectFilmekIMDB() {
+async function SelectFilmekMeta() {
   return new Promise((resolve, reject) => {
-      pool.query('select * from filmek f order by f.IMDBertekeles DESC LIMIT 20', (error, elements) => {
+      pool.query('select * from filmek f order by f.Meta_ertekeles DESC LIMIT 20', (error, elements) => {
           if (error) {
               return reject(error);
           }
@@ -389,7 +389,7 @@ module.exports = {
   SearchFilmAll:SearchFilmAll,
   SelectFavorite:SelectFavorite,
   SelectUserFavorite:SelectUserFavorite,
-  SelectFilmekIMDB:SelectFilmekIMDB,
+  SelectFilmekMeta:SelectFilmekMeta,
   SelectSzineszFilm:SelectSzineszFilm,
   SelectRendezoFilm: SelectRendezoFilm,
   SelectKategoriaFilm:SelectKategoriaFilm,

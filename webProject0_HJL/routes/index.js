@@ -10,8 +10,8 @@ var verify = require("../middleware/verfyModule");
 router.get("/", async (req, res, next) => {
   req.session.legutobbi="/"
   const resultElements = await Db.SelectFilmekIndex();
-  const imdb = await Db.SelectFilmekIMDB();
-  res.render("index.ejs", { list: resultElements, session: req.session, imdb:imdb });
+  const meta = await Db.SelectFilmekMeta();
+  res.render("index.ejs", { list: resultElements, session: req.session, meta:meta });
 });
 
 router.get("/filmek", async (req, res, next) => {
